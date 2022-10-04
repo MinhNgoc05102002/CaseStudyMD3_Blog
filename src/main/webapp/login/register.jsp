@@ -1,10 +1,8 @@
 <%--
-  Created by IntelliJ IDEA.
   User: User
-  Date: 10/2/2022
-  Time: 9:47 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -38,19 +36,19 @@
                     </div>
                     <form action="#" name="registration">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">First Name</label>
+                            <label for="firstname">First Name</label>
                             <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Last Name</label>
+                            <label for="lastname">Last Name</label>
                             <input type="text"  name="lastname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
+                            <label for="email">Email address</label>
                             <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Password</label>
+                            <label for="password">Password</label>
                             <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                         </div>
                         <div class="col-md-12 text-center mb-3">
@@ -67,6 +65,6 @@
             </div>
         </div>
     </div>
-
+</div>
 </body>
 </html>
