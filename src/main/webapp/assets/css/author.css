@@ -1,0 +1,53 @@
+.author__avt {
+    padding: 15px;
+}
+.author-img{
+    background-image: url("../img/demopic/1.jpg");
+    position: relative;
+    padding-top: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    /* margin: 20px 5px; */
+    border-radius: 50%;
+}
+.author__name {
+    padding-top: 20px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+.author__description {
+    margin: 5px 0px;
+    font-weight: 500;
+    color: #737873;
+    font-size: 1.1rem;
+}
+.author__numberBlog {
+    color: #737873;
+    font-weight: 500;
+}
+.author__nav {
+    text-align: right;
+    margin: 20px;
+    
+}
+.author__nav-link {
+    border-radius: 5px;
+    margin: 5px;
+    padding: 6px 10px;
+    font-weight: 500;
+}
+.author__nav-link:hover {
+    text-decoration: none;
+}
+.author__nav-link i {
+    margin: 5px;
+}
+.addblog {
+    color: white;
+    background-color: #1b74e4;
+}
+.changeinfo {
+    background-color: #e4e6eb;
+    color: black;
+}

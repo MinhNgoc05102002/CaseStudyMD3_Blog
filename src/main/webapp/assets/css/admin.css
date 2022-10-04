@@ -1,0 +1,56 @@
+.admin__title {
+    font-size: 1.6rem;
+    font-family: Righteous;
+}
+
+.left_nav {
+    border-radius: 10px;
+    /* background-color: rgb(246,247,251); */
+    border: 1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    padding: 10px 0px;
+    padding-bottom: 30px;
+}
+.left_nav-link.now {
+    /* color: #91b959; */
+    /* font-weight: bold; */
+}
+
+.left_nav-title {
+    text-align: center;
+    font-size: 1.45rem;
+    margin: 20px 50px 20px;
+    padding: 10px 0px;
+    font-weight: bold;
+    /* color: rgb(108, 108, 108); */
+    border-bottom: 2px solid rgb(175, 175, 175);
+}
+.left_nav-menu {
+    list-style: none;
+    padding-left: 30px;
+}
+.left_nav-item {
+    box-sizing: content-box;
+    margin-right: 20px;
+    margin-left: 0px;
+    padding: 15px 0px;
+    border-bottom: 1px solid rgb(210, 210, 210);
+}
+.left_nav-link {
+    text-decoration: none;
+    color: black;
+    font-size: 1.1rem;
+    display: block;
+    transform: translateX(0px);
+    transition: all ease-in .3s;
+}
+
+.left_nav-link:hover {
+    color: black;
+    font-weight: bold;
+    transform: translateX(3px);
+    text-decoration: none;
+}
+.left_nav-link:focus{
+    text-decoration: none;
+}

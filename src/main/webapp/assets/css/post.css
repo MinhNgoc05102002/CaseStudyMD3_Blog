@@ -1,0 +1,99 @@
+.author {
+    padding: 20px 10px;
+    margin-top: 20px;
+    /* margin-bottom: 10px; */
+    text-align: center;
+    align-items: center;
+    border:1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+}
+.author-avt {
+    margin-bottom: 10px;
+}
+.author-avt a{
+    /* text-align: center; */
+    /* align-items: center; */
+    /* margin: auto; */
+    width: 100%;
+    /* float: right; */
+}
+
+.author-img {
+    width: 7rem;
+    height: 7rem;
+    margin-right: auto;
+    margin-left: auto;
+    float: none;
+}
+.author-name{
+    font-size: 1.4rem;
+    color: black;
+    display: block;
+    font-weight: 500;
+    margin: 10px;
+}
+.author-name:hover {
+    text-decoration: none;
+    color: black;
+    font-weight: 700;
+}
+.author-description {
+    margin-bottom: 5px;
+}
+.author-contact {
+    margin-bottom: 5px;
+}
+.author-contact-link {
+    color: black;
+    margin: 3px;
+    font-size: 1.2rem;
+}
+.right-content {
+
+}
+.post-tags {
+    margin-top: 5px;
+    /* background-color: aquamarine; */
+    margin-bottom: 0px;
+}
+ul.tags li a:hover {
+    background-color: black;
+    color: white;
+}
+.posttitle {
+    margin-top: -20px;
+    /* background-color: aqua; */
+}
+.mainheading {
+    text-align: left;
+}
+.share {
+    font-size: 1.2rem;
+    text-align: center;
+    align-items: center;
+    border:1px solid rgba(0,0,0,0.1);
+    border-radius: 5px;
+    margin-top: 15px;
+    padding: 10px;
+    color: black;
+}
+.share a {
+    color: black;
+    margin: 5px;
+    vertical-align: middle;
+}
+
+/* author css */
+.left-info-author .author, .share {
+    background-color: white;
+}
+.left-info-author {
+    margin-top: 20px;
+}
+/* .right-content .graybg {
+    background-color: white;
+} */
+/* .right-content .listrelated .card {
+	box-shadow:0 1px 7px rgba(0,0,0,.1);
+	border:0;
+} */
