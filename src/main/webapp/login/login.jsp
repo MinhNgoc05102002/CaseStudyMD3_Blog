@@ -1,10 +1,8 @@
 <%--
-  Created by IntelliJ IDEA.
   User: User
-  Date: 10/2/2022
-  Time: 9:41 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -39,11 +37,11 @@
                     </div>
                     <form action="" method="post" name="login">
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
+                            <label for="email">Email address</label>
                             <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Password</label>
+                            <label for="password">Password</label>
                             <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                         </div>
                         <div class="form-group">
@@ -60,7 +58,7 @@
                         </div>
                         <div class="col-md-12 mb-3">
                             <p class="text-center">
-                                <a href="javascript:void();" class="google btn mybtn"><i class="fa fa-google-plus">
+                                <a href="<%--javascript:void();--%>" class="google btn mybtn"><i class="fa fa-google-plus">
                                 </i> Signup using Google
                                 </a>
                             </p>
@@ -71,7 +69,6 @@
                     </form>
                 </div>
             </div>
-
         </div>
     </div>
 </div>
