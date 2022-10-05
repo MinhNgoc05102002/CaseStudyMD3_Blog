@@ -2,16 +2,36 @@ package dao.account;
 
 import dao.ConnectMySQL;
 import dao.IService;
-import model.Account;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 
 public class AccountDAO implements IService {
     private Connection connection = ConnectMySQL.getConnection();
     @Override
-    public List<Account> findAll() {
-         String sqlGetAll = "SELECT * FROM account";
+    public List<Account> findAll() throws SQLException {
+        String sqlFindAll = "SELECT * FROM account";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlFindAll);
+
+            ArrayList<Account> result = new ArrayList<>();
+            while (resultSet.next()) {
+                String name = resultSet.getString("username");
+                String password = resultSet.getString("password");
+                int type = resultSet.getInt("role");
+                Account account = new Account(name, password, type);
+                result.add(account);
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 

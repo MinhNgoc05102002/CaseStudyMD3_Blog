@@ -1,11 +1,10 @@
 package dao;
 
-import model.Account;
-
+import java.sql.SQLException;
 import java.util.List;
 
 public interface IService<T> {
-    List<T> findAll();
+    List<T> findAll() throws SQLException;
     void save(T t);
     int findIndexById(int id);
     T findById(int id);
