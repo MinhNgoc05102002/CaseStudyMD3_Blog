@@ -25,15 +25,7 @@ public class AccountServiceImplement implements IAccountService {
 
             ArrayList<Account> result = new ArrayList<>();
             while (resultSet.next()) {
-                String username = resultSet.getString("username");
-                String email = resultSet.getString("email");
-                String fullname = resultSet.getString("fullname");
-                String password = resultSet.getString("password");
-                String phoneNumber = resultSet.getString("phoneNumber");
-                String address = resultSet.getString("address");
-                int role = resultSet.getInt("role");
-                int status = resultSet.getInt("status");
-                Account account = new Account(username, email,fullname, password, phoneNumber, address, role, status);
+                Account account = getAccountByResultSet(resultSet);
                 result.add(account);
             }
             return result;
@@ -68,48 +60,49 @@ public class AccountServiceImplement implements IAccountService {
     }
 
     @Override
-    public int findIndexById(int id) {
-        return 0;
+    public Account findByUsernameOrEmail(String nameEmail) {
+            String selectAccount = "select * from account where username = ? or email = ?; ";
+            Account account = null;
+            try(Connection con = ConnectMySQL.getConnection();
+                PreparedStatement pre = con.prepareStatement(selectAccount)){
+                pre.setString(1, nameEmail);
+                pre.setString(2, nameEmail);
+                ResultSet resultSet =pre.executeQuery();
+
+                while (resultSet.next()){
+                    account = getAccountByResultSet(resultSet);
+                }
+                if(account != null){
+                    return account;
+                }
+            }catch (SQLException e){
+                throw new RuntimeException(e);
+            }
+            return account;
+    }
+
+    private Account getAccountByResultSet(ResultSet resultSet) throws SQLException {
+        String username = resultSet.getString("username");
+        if (username == null || username.equals("")) {
+            return null;
+        }
+        String email = resultSet.getString("email");
+        String fullname = resultSet.getString("fullname");
+        String password = resultSet.getString("password");
+        String phoneNumber = resultSet.getString("phoneNumber");
+        String address = resultSet.getString("address");
+        int role = resultSet.getInt("role");
+        int status = resultSet.getInt("status");
+        return new Account(username, email, fullname, password, phoneNumber, address, role, status);
     }
 
     @Override
-    public Account findById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Account> findByName(String name) {
-        return null;
-    }
-
-    @Override
-    public void deleteById(int id) {
+    public void updateByUsernameOrEmail(Account account) {
 
     }
 
     @Override
-    public void updateById(int id, Account account) {
+    public void deleteByUsernameOrEmail(String nameEmail, Account account) {
 
     }
-
-    @Override
-    public void deleteById(int id, Account account) {
-
-    }
-
-    @Override
-    public void save(Object o) {
-
-    }
-
-    @Override
-    public void updateById(int id, Object o) {
-
-    }
-
-    @Override
-    public void deleteById(int id, Object o) {
-
-    }
-
 }
