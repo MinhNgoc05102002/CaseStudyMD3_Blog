@@ -4,10 +4,7 @@ import dao.ConnectMySQL;
 import dao.IService;
 import model.Account;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,9 +43,28 @@ public class AccountServiceImplement implements IAccountService {
         return null;
     }
 
+    private PreparedStatement setPreparedStatement(PreparedStatement pre, Account account) throws SQLException {
+        pre.setString(1, account.getUsername());
+        pre.setString(2, account.getEmail());
+        pre.setString(3, account.getFullname());
+        pre.setString(4, account.getPassword());
+        pre.setString(5, account.getPhoneNumber());
+        pre.setString(6, account.getAddress());
+        pre.setInt(7, account.getRole());
+        pre.setInt(8, account.getRole());
+        return pre;
+    }
+
     @Override
     public void save(Account account) {
-
+        String insert = "INSERT INTO account (full_name, username, password, address, email, phone_number, role_id) " +
+                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        try (Connection connection = ConnectMySQL.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
+             setPreparedStatement(preparedStatement, account).executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
