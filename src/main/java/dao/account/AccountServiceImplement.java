@@ -61,7 +61,7 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public Account findByUsernameOrEmail(String nameEmail) {
-            String selectAccount = "select * from account where username = ? or email = ?; ";
+            String selectAccount = "select * from case3.account where username = ? or email = ?; ";
             Account account = null;
             try(Connection con = ConnectMySQL.getConnection();
                 PreparedStatement pre = con.prepareStatement(selectAccount)){

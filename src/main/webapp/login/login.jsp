@@ -35,7 +35,7 @@
                             <h1>Login</h1>
                         </div>
                     </div>
-                    <form action="" method="post" name="login">
+                    <form action="/log-in?action=login" method="post" name="login">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">

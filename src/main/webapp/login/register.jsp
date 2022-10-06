@@ -34,7 +34,7 @@
                             <h1>Register</h1>
                         </div>
                     </div>
-                    <form action="#" name="registration">
+                    <form action="/log-in?action=registration" name="registration">
                         <div class="form-group">
                             <label for="firstname">First Name</label>
                             <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
