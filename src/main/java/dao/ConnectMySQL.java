@@ -11,7 +11,7 @@ public class ConnectMySQL {
             String jdbcUser = "root";
             String jdbcPassword = "2000";
             try {
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 connection = DriverManager.getConnection(jdbcURL, jdbcUser, jdbcPassword);
             } catch (Exception e) {
                 e.printStackTrace();
