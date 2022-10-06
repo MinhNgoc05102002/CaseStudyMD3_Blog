@@ -2,6 +2,7 @@ package dao.account;
 
 import dao.ConnectMySQL;
 import dao.IService;
+import model.Account;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -25,13 +26,12 @@ public class AccountDAO implements IService {
                 String name = resultSet.getString("username");
                 String password = resultSet.getString("password");
                 int type = resultSet.getInt("role");
-                Account account = new Account(name, password, type);
+                Account account = new Account();
                 result.add(account);
             }
         }catch (Exception e) {
             e.printStackTrace();
         }
-
         return null;
     }
 
