@@ -8,18 +8,26 @@ public class Blog {
     private String content;
     private int status;
     private Date createAt;
-    private String username;
+    private int accountID;
 
     public Blog() {
     }
 
-    public Blog(int blogID, String title, String content, int status, Date createAt, String username) {
+    public Blog(int blogID, String title, String content, int status, Date createAt, int accountID) {
         this.blogID = blogID;
         this.title = title;
         this.content = content;
         this.status = status;
         this.createAt = createAt;
-        this.username = username;
+        this.accountID = accountID;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
     public int getBlogID() {
@@ -62,11 +70,4 @@ public class Blog {
         this.createAt = createAt;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
 }

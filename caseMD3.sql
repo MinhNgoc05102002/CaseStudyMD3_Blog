@@ -1,7 +1,9 @@
+drop database case3
 create database Case3;
 use Case3;
 
 create table Account (
+	accountID 	int	not null auto_increment,
 	username 	varchar(20) not null,
     email 		varchar(20) not null,
     fullname	varchar(50),
@@ -10,7 +12,7 @@ create table Account (
     address		varchar(50),
 	role 		bit,
     status 		bit,
-    constraint  primary key (username, email)
+    constraint  primary key (accountID, username, email)
 );
 
 create table Blog (
@@ -19,9 +21,9 @@ create table Blog (
     content 	longtext,
     status		bit,
     createAt	datetime,
-    username 	varchar(20),
+    accountID 	int,
     constraint	primary key (blogID),
-    constraint  fk_blog_author foreign key (username) references Account(username)
+    constraint  fk_blog_author foreign key (accountID) references Account(accountID)
 );
 
 create table Category(

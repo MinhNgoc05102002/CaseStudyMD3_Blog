@@ -13,11 +13,12 @@ import java.io.IOException;
 
 @WebServlet(urlPatterns = "/log-in")
 public class LoginServlet extends HttpServlet {
+    private String action;
     AccountServiceImplement accountServiceImplement = new AccountServiceImplement();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        action = request.getParameter("action");
         if (action == null) {
             action = "";
         }
@@ -30,13 +31,14 @@ public class LoginServlet extends HttpServlet {
                 createAnAccount(request,response);
                 break;
             default:
-                returnHomePage(request,response);
+                goAdminPage(request,response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
+        response.setContentType("text/html;charset=UTF-8");
+        action = request.getParameter("action");
         if (action==null) {
             action = "";
         }
@@ -49,13 +51,18 @@ public class LoginServlet extends HttpServlet {
                 createAnAccount(request,response);
                 break;
             default:
-                returnHomePage(request,response);
+                goAdminPage(request,response);
         }
     }
 
 
-    private void returnHomePage(HttpServletRequest request, HttpServletResponse response) {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("");
+    private void goAdminPage(HttpServletRequest request, HttpServletResponse response) {
+//        try {
+//            response.sendRedirect("admin.jsp");
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
         try {
             dispatcher.forward(request,response);
         } catch (Exception e) {
@@ -63,16 +70,20 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private void checkLogin(HttpServletRequest request, HttpServletResponse response) {
+    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Account account = accountServiceImplement.findByUsernameOrEmail(email);
         if (account == null || !account.getPassword().equals(password)) {
-
+            response.sendRedirect("login.jsp");
         }
         else {
             request.setAttribute("account", account);
-            returnHomePage(request,response);
+            if (account.getRole()==0) {
+                response.sendRedirect("admin.jsp");
+            }else {
+                response.sendRedirect("login");
+            }
         }
     }
 

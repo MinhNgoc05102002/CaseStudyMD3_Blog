@@ -1,6 +1,7 @@
 package model;
 
 public class Account {
+    private int accountID;
     private String username;
     private String email;
     private String fullname;
@@ -12,7 +13,8 @@ public class Account {
     public Account() {
     }
 
-    public Account(String username, String email, String fullname, String password, String phoneNumber, String address, int role, int status) {
+    public Account(int accountID, String username, String email, String fullname, String password, String phoneNumber, String address, int role, int status) {
+        this.accountID = accountID;
         this.username = username;
         this.email = email;
         this.fullname = fullname;
@@ -21,6 +23,14 @@ public class Account {
         this.address = address;
         this.role = role;
         this.status = status;
+    }
+
+    public int getAccountID() {
+        return accountID;
+    }
+
+    public void setAccountID(int accountID) {
+        this.accountID = accountID;
     }
 
     public String getUsername() {

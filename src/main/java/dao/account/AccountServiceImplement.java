@@ -82,6 +82,7 @@ public class AccountServiceImplement implements IAccountService {
     }
 
     private Account getAccountByResultSet(ResultSet resultSet) throws SQLException {
+        int accountID = resultSet.getInt("accountID");
         String username = resultSet.getString("username");
         if (username == null || username.equals("")) {
             return null;
@@ -93,7 +94,7 @@ public class AccountServiceImplement implements IAccountService {
         String address = resultSet.getString("address");
         int role = resultSet.getInt("role");
         int status = resultSet.getInt("status");
-        return new Account(username, email, fullname, password, phoneNumber, address, role, status);
+        return new Account(accountID, username, email, fullname, password, phoneNumber, address, role, status);
     }
 
     @Override

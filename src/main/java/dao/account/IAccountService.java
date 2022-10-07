@@ -6,7 +6,7 @@ import model.Account;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface IAccountService{
+public interface IAccountService extends IService{
 
     public List findAll();
     void save(Account account);

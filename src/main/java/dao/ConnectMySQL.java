@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConnectMySQL {
     private static Connection connection = null;
     public static Connection getConnection(){
-        if (connection == null) {
+        //if (connection == null) {
             String jdbcURL = "jdbc:mysql://localhost:3306/blog_database";
             String jdbcUser = "root";
             String jdbcPassword = "2000";
@@ -16,7 +16,7 @@ public class ConnectMySQL {
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
+        //}
         return connection;
     }
 }
