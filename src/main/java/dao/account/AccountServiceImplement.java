@@ -1,7 +1,6 @@
 package dao.account;
 
 import dao.ConnectMySQL;
-import dao.IService;
 import model.Account;
 
 import java.sql.*;
@@ -35,18 +34,50 @@ public class AccountServiceImplement implements IAccountService {
         return null;
     }
 
-    private PreparedStatement setPreparedStatement(PreparedStatement pre, Account account) throws SQLException {
-        pre.setString(1, account.getUsername());
-        pre.setString(2, account.getEmail());
-        pre.setString(3, account.getFullname());
-        pre.setString(4, account.getPassword());
-        pre.setString(5, account.getPhoneNumber());
-        pre.setString(6, account.getAddress());
-        pre.setInt(7, account.getRole());
-        pre.setInt(8, account.getRole());
-        return pre;
+
+
+    private PreparedStatement setPreparedStatement(PreparedStatement statement, Account account) throws SQLException {
+        statement.setString(1, account.getUsername());
+        statement.setString(2, account.getEmail());
+        statement.setString(3, account.getFullname());
+        statement.setString(4, account.getPassword());
+        statement.setString(5, account.getPhoneNumber());
+        statement.setString(6, account.getAddress());
+        statement.setInt(7, account.getRole());
+        statement.setInt(8, account.getRole());
+        return statement;
     }
 
+    @Override
+    public Account findById(int id) {
+        return null;
+    }
+
+    @Override
+    public List findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public void deleteById(int id) {
+        String deleteSQL = "DELETE FROM account where accountID = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(deleteSQL);
+            statement.setInt(1, id);
+            statement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void updateById(int id, Object o) {
+    }
+    @Override
+    public void save(Object o) {
+
+    }
     @Override
     public void save(Account account) {
         String insert = "INSERT INTO account (full_name, username, password, address, email, phone_number, role_id) " +
@@ -64,10 +95,10 @@ public class AccountServiceImplement implements IAccountService {
             String selectAccount = "select * from case3.account where username = ? or email = ?; ";
             Account account = null;
             try(Connection con = ConnectMySQL.getConnection();
-                PreparedStatement pre = con.prepareStatement(selectAccount)){
-                pre.setString(1, nameEmail);
-                pre.setString(2, nameEmail);
-                ResultSet resultSet =pre.executeQuery();
+                PreparedStatement statement = con.prepareStatement(selectAccount)){
+                statement.setString(1, nameEmail);
+                statement.setString(2, nameEmail);
+                ResultSet resultSet =statement.executeQuery();
 
                 while (resultSet.next()){
                     account = getAccountByResultSet(resultSet);
@@ -78,7 +109,7 @@ public class AccountServiceImplement implements IAccountService {
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
-            return account;
+            return null;
     }
 
     private Account getAccountByResultSet(ResultSet resultSet) throws SQLException {
@@ -103,7 +134,16 @@ public class AccountServiceImplement implements IAccountService {
     }
 
     @Override
-    public void deleteByUsernameOrEmail(String nameEmail, Account account) {
-
+    public void deleteByUsernameOrEmail(String nameEmail) {
+        String deleteSQL = "DELETE FROM username where accountID = ? OR email = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(deleteSQL);
+            statement.setString(1, nameEmail);
+            statement.setString(2, nameEmail);
+            statement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }
