@@ -5,6 +5,7 @@
   Time: 10:13 PM
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -47,8 +48,15 @@
             </form> -->
         </div>
         <div class="header__user col-md-4 col-lg-3">
-            <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>
+            <%
+                if(session.getAttribute("fullName") == null){
+            %>
+                <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>
+                <a href="/login/register.jsp" class="header__user-link"><span>Register</span><i class="fas fa-user-plus"></i></a>
+            <%} else {%>
+            <a href="/login/login.jsp" class="header__user-link"><span>Xin chào</span><i class="fas fa-sign-in-alt"></i></a>
             <a href="/login/register.jsp" class="header__user-link"><span>Register</span><i class="fas fa-user-plus"></i></a>
+            <%}%>
         </div>
     </div>
     <hr>

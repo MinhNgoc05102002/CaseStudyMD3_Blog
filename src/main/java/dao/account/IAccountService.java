@@ -9,8 +9,11 @@ import java.util.List;
 public interface IAccountService extends IService{
 
     public List findAll();
-    void save(Account account);
     Account findByUsernameOrEmail(String nameEmail);
     void updateByUsernameOrEmail(Account account);
-    void deleteByUsernameOrEmail(String nameEmail, Account account);
+    void deleteByUsernameOrEmail(String nameEmail);
+    void save(Account account);
+    Account findById(int id);
+    List<Account> findByName(String name);
+    void deleteById(int id);
 }
