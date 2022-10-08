@@ -93,6 +93,17 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void createAnAccount(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        //check validate
 
+        if (accountServiceImplement.findByUsernameOrEmail(username) == null &&
+                accountServiceImplement.findByUsernameOrEmail(email) == null) {
+            Account account = new Account(username, email, fullName, password);
+            accountServiceImplement.save(account);
+            redirectPage(request, response, "login/login.jsp");
+        }
     }
 }

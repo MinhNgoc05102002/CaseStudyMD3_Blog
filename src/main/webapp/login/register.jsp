@@ -34,7 +34,7 @@
                             <h1>Register</h1>
                         </div>
                     </div>
-                    <form action="/log-in?action=registration" name="registration">
+                    <form action="/log-in?action=registration" name="registration" method="post">
                         <div class="form-group">
                             <label for="firstname">Username</label>
                             <input type="text"  name="username" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Username">
@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label for="passwordAgain">Re-type</label>
-                            <input type="password" name="password" id="passwordAgain"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password again">
+                            <input type="password" name="rePassword" id="passwordAgain"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password again">
                         </div>
                         <div class="col-md-12 text-center mb-3">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>

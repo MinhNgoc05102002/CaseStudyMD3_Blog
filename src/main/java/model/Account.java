@@ -36,6 +36,17 @@ public class Account {
         this.status = status;
     }
 
+    public Account(String username, String email, String fullname, String password) {
+        this.username = username;
+        this.email = email;
+        this.fullname = fullname;
+        this.password = password;
+        this.status = 1;
+        this.role = 0;
+        this.address = "";
+        this.phoneNumber = "";
+    }
+
     public int getAccountID() {
         return accountID;
     }

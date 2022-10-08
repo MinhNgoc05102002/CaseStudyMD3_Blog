@@ -16,19 +16,6 @@ public class HomeServlet extends HttpServlet {
         if (action == null) {
             action = "";
         }
-
-        switch (action) {
-            case "login":
-                break;
-            case "create_account":
-                break;
-            default:
-                returnHomePage(request,response);
-        }
     }
 
-    private void returnHomePage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
-        dispatcher.forward(request, response);
-    }
 }
