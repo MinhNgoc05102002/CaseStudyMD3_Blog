@@ -36,12 +36,12 @@
                     </div>
                     <form action="/log-in?action=registration" name="registration" method="post">
                         <div class="form-group">
-                            <label for="firstname">Username</label>
-                            <input type="text"  name="username" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Username">
+                            <label for="username">Username</label>
+                            <input type="text"  name="username" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter Username">
                         </div>
                         <div class="form-group">
-                            <label for="lastname">Full name</label>
-                            <input type="text"  name="fullName" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Full name">
+                            <label for="fullName">Full name</label>
+                            <input type="text"  name="fullName" class="form-control" id="fullName" aria-describedby="emailHelp" placeholder="Enter Full name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
@@ -49,11 +49,11 @@
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>
-                            <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                            <input type="password" name="password" id="password" class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                         </div>
                         <div class="form-group">
                             <label for="passwordAgain">Re-type</label>
-                            <input type="password" name="rePassword" id="passwordAgain"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password again">
+                            <input type="password" name="passwordAgain" id="passwordAgain"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password again">
                         </div>
                         <div class="col-md-12 text-center mb-3">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
