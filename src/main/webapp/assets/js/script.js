@@ -1,3 +1,4 @@
+console.log("here")
 $("#signup").click(function() {
     $("#first").fadeOut("fast", function() {
         $("#second").fadeIn("fast");
@@ -35,7 +36,10 @@ $(function() {
 
         },
         submitHandler: function(form) {
+
+            console.log("here3")
             form.submit();
+            console.log("here2")
         }
     });
 });
