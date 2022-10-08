@@ -10,10 +10,6 @@ import java.util.List;
 public class AccountServiceImplement implements IAccountService {
     private Connection connection = ConnectMySQL.getConnection();
 
-//    public static void main(String[] args) {
-//        new AccountServiceImplement().findAll();
-//    }
-
     @Override
     public List<Account> findAll(){
         String sqlFindAll = "SELECT * FROM case3.account";
@@ -44,7 +40,7 @@ public class AccountServiceImplement implements IAccountService {
         statement.setString(5, account.getPhoneNumber());
         statement.setString(6, account.getAddress());
         statement.setInt(7, account.getRole());
-        statement.setInt(8, account.getRole());
+        statement.setInt(8, account.getStatus());
         return statement;
     }
 
@@ -80,7 +76,7 @@ public class AccountServiceImplement implements IAccountService {
     }
     @Override
     public void save(Account account) {
-        String insert = "INSERT INTO account (full_name, username, password, address, email, phone_number, role_id) " +
+        String insert = "INSERT INTO account (username, email, fullname, password, phoneNumber, address, role, status) " +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
         try (Connection connection = ConnectMySQL.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insert)) {

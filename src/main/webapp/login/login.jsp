@@ -35,7 +35,7 @@
                             <h1>Login</h1>
                         </div>
                     </div>
-                    <form action="/log-in?action=login" method="post" name="login">
+                    <form action="/log-in?action=submitLogin" method="post" name="login">
                         <div class="form-group">
                             <label for="email">Email address</label>
                             <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -64,7 +64,7 @@
                             </p>
                         </div>
                         <div class="form-group">
-                            <p class="text-center">Don't have account? <a href="#" id="signup">Sign up here</a></p>
+                            <p class="text-center">Don't have account? <a href="/log-in?action=register" id="signup">Sign up here</a></p>
                         </div>
                     </form>
                 </div>
