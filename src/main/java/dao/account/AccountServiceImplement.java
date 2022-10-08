@@ -10,10 +10,6 @@ import java.util.List;
 public class AccountServiceImplement implements IAccountService {
     private Connection connection = ConnectMySQL.getConnection();
 
-//    public static void main(String[] args) {
-//        new AccountServiceImplement().findAll();
-//    }
-
     @Override
     public List<Account> findAll(){
         String sqlFindAll = "SELECT * FROM case3.account";
@@ -37,14 +33,23 @@ public class AccountServiceImplement implements IAccountService {
 
 
     private PreparedStatement setPreparedStatement(PreparedStatement statement, Account account) throws SQLException {
+<<<<<<< HEAD
+=======
+        //username, email, fullname, password, phoneNumber, address, role, status
+>>>>>>> login
         statement.setString(1, account.getUsername());
         statement.setString(2, account.getEmail());
         statement.setString(3, account.getFullname());
         statement.setString(4, account.getPassword());
         statement.setString(5, account.getPhoneNumber());
         statement.setString(6, account.getAddress());
+<<<<<<< HEAD
         statement.setInt(7, account.getRole());
         statement.setInt(8, account.getRole());
+=======
+        statement.setString(7, String.valueOf(account.getRole()));
+        statement.setString(8, String.valueOf(account.getStatus()));
+>>>>>>> login
         return statement;
     }
 
@@ -80,14 +85,22 @@ public class AccountServiceImplement implements IAccountService {
     }
     @Override
     public void save(Account account) {
-        String insert = "INSERT INTO account (full_name, username, password, address, email, phone_number, role_id) " +
-                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+        String insert = "INSERT INTO `case3`.`account` (`username`, `email`, `fullname`, `password`, `phoneNumber`, `address`, `role`, `status`) " +
+                "VALUES (?, ?, ?, ?, ?, ?, b?, b?);";
         try (Connection connection = ConnectMySQL.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
-             setPreparedStatement(preparedStatement, account).executeUpdate();
+             setPreparedStatement(preparedStatement, account).execute();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+//        String insert = "INSERT INTO account (username, email, fullname, password, phoneNumber, address, role, status) " +
+//                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
+//        try (Connection connection = ConnectMySQL.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
+//             setPreparedStatement(preparedStatement, account).execute();
+//        } catch (SQLException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     @Override

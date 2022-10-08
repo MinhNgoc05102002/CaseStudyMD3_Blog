@@ -34,14 +34,14 @@
                             <h1>Register</h1>
                         </div>
                     </div>
-                    <form action="/log-in?action=registration" name="registration">
+                    <form action="/log-in?action=registration" name="registration" method="post">
                         <div class="form-group">
-                            <label for="firstname">First Name</label>
-                            <input type="text"  name="firstname" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Firstname">
+                            <label for="firstname">Username</label>
+                            <input type="text"  name="username" class="form-control" id="firstname" aria-describedby="emailHelp" placeholder="Enter Username">
                         </div>
                         <div class="form-group">
-                            <label for="lastname">Last Name</label>
-                            <input type="text"  name="lastname" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Lastname">
+                            <label for="lastname">Full name</label>
+                            <input type="text"  name="fullName" class="form-control" id="lastname" aria-describedby="emailHelp" placeholder="Enter Full name">
                         </div>
                         <div class="form-group">
                             <label for="email">Email address</label>
@@ -51,12 +51,16 @@
                             <label for="password">Password</label>
                             <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
                         </div>
+                        <div class="form-group">
+                            <label for="passwordAgain">Re-type</label>
+                            <input type="password" name="rePassword" id="passwordAgain"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password again">
+                        </div>
                         <div class="col-md-12 text-center mb-3">
                             <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Get Started For Free</button>
                         </div>
                         <div class="col-md-12 ">
                             <div class="form-group">
-                                <p class="text-center"><a href="#" id="signin">Already have an account?</a></p>
+                                <p class="text-center"><a href="/log-in?action=login" id="signin">Already have an account?</a></p>
                             </div>
                         </div>
                         <!-- </div> -->

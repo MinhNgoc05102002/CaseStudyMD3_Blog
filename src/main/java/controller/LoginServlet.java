@@ -9,12 +9,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet(urlPatterns = "/log-in")
 public class LoginServlet extends HttpServlet {
     private String action;
-    AccountServiceImplement accountServiceImplement = new AccountServiceImplement();
+    private AccountServiceImplement accountServiceImplement = new AccountServiceImplement();
+    private RequestDispatcher dispatcher;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -25,13 +27,13 @@ public class LoginServlet extends HttpServlet {
 
         switch (action) {
             case "login":
-                checkLogin(request, response);
+                redirectPage(request, response, "login/login.jsp");
                 break;
-            case "create_account":
-                createAnAccount(request,response);
+            case "register":
+                redirectPage(request, response, "login/register.jsp");
                 break;
             default:
-                goAdminPage(request,response);
+                redirectPage(request, response,"index.jsp");
         }
     }
 
@@ -44,49 +46,67 @@ public class LoginServlet extends HttpServlet {
         }
 
         switch (action) {
-            case "login":
+            case "submitLogin":
                 checkLogin(request, response);
                 break;
-            case "create_account":
+            case "registration":
                 createAnAccount(request,response);
                 break;
             default:
-                goAdminPage(request,response);
+                redirectPage(request, response,"index.jsp");
         }
     }
 
-
-    private void goAdminPage(HttpServletRequest request, HttpServletResponse response) {
-//        try {
-//            response.sendRedirect("admin.jsp");
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-        RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
-        try {
-            dispatcher.forward(request,response);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+    private void showRegisterPage(HttpServletRequest request, HttpServletResponse response) {
+        redirectPage(request, response, "register.jsp");
     }
 
-    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Account account = accountServiceImplement.findByUsernameOrEmail(email);
+
+        request.setAttribute("account", account);
         if (account == null || !account.getPassword().equals(password)) {
-            response.sendRedirect("login.jsp");
+            redirectPage(request, response, "login.jsp");
         }
         else {
-            request.setAttribute("account", account);
-            if (account.getRole()==0) {
-                response.sendRedirect("admin.jsp");
-            }else {
-                response.sendRedirect("login");
+            HttpSession session = request.getSession();
+            session.setAttribute("fullName", account.getFullname());
+            switch (account.getRole()) {
+                case 0:
+                    redirectPage(request, response, "author.jsp");
+                    break;
+                case 1:
+                    redirectPage(request, response, "admin.jsp");
+                    break;
+                default:
+                    redirectPage(request, response, "index.jsp");
             }
         }
     }
 
+    private void redirectPage(HttpServletRequest request, HttpServletResponse response, String url){
+        try {
+            dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+
     private void createAnAccount(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String fullName = request.getParameter("fullName");
+        String email = request.getParameter("email");
+        String password = request.getParameter("password");
+        //check validate
+
+        if (accountServiceImplement.findByUsernameOrEmail(username) == null &&
+                accountServiceImplement.findByUsernameOrEmail(email) == null) {
+            Account account = new Account(username, email, fullName, password);
+            accountServiceImplement.save(account);
+            redirectPage(request, response, "login/login.jsp");
+        }
     }
 }
