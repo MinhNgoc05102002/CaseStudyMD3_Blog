@@ -26,12 +26,13 @@ public class LoginServlet extends HttpServlet {
         }
 
         HttpSession session = request.getSession();
-        session.removeAttribute("fullName");
         switch (action) {
             case "login":
+                session.removeAttribute("fullName");
                 redirectPage(request, response, "login/login.jsp");
                 break;
             case "register":
+                session.removeAttribute("fullName");
                 redirectPage(request, response, "login/register.jsp");
                 break;
             default:
@@ -57,10 +58,6 @@ public class LoginServlet extends HttpServlet {
             default:
                 redirectPage(request, response,"index.jsp");
         }
-    }
-
-    private void showRegisterPage(HttpServletRequest request, HttpServletResponse response) {
-        redirectPage(request, response, "register.jsp");
     }
 
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
