@@ -33,15 +33,22 @@ public class AccountServiceImplement implements IAccountService {
 
 
     private PreparedStatement setPreparedStatement(PreparedStatement statement, Account account) throws SQLException {
+
         //username, email, fullname, password, phoneNumber, address, role, status
+
         statement.setString(1, account.getUsername());
         statement.setString(2, account.getEmail());
         statement.setString(3, account.getFullname());
         statement.setString(4, account.getPassword());
         statement.setString(5, account.getPhoneNumber());
         statement.setString(6, account.getAddress());
+
+        statement.setInt(7, account.getRole());
+        statement.setInt(8, account.getRole());
+
         statement.setString(7, String.valueOf(account.getRole()));
         statement.setString(8, String.valueOf(account.getStatus()));
+
         return statement;
     }
 
