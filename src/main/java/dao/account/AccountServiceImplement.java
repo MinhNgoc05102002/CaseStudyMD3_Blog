@@ -41,9 +41,6 @@ public class AccountServiceImplement implements IAccountService {
         statement.setString(5, account.getPhoneNumber());
         statement.setString(6, account.getAddress());
 
-        statement.setInt(7, account.getRole());
-        statement.setInt(8, account.getRole());
-
         statement.setString(7, String.valueOf(account.getRole()));
         statement.setString(8, String.valueOf(account.getStatus()));
 
@@ -104,13 +101,10 @@ public class AccountServiceImplement implements IAccountService {
                 while (resultSet.next()){
                     account = getAccountByResultSet(resultSet);
                 }
-                if(account != null){
-                    return account;
-                }
             }catch (SQLException e){
                 throw new RuntimeException(e);
             }
-            return null;
+            return account;
     }
 
     private Account getAccountByResultSet(ResultSet resultSet) throws SQLException {

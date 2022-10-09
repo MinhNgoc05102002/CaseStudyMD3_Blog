@@ -9,6 +9,7 @@ public class Blog {
     private int status;
     private Date createAt;
     private int accountID;
+    private String image;
 
     public Blog() {
     }
@@ -20,6 +21,16 @@ public class Blog {
         this.status = status;
         this.createAt = createAt;
         this.accountID = accountID;
+    }
+
+    public Blog(int blogID, String title, String content, int status, Date createAt, int accountID, String image) {
+        this.blogID = blogID;
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.createAt = createAt;
+        this.accountID = accountID;
+        this.image = image;
     }
 
     public int getAccountID() {
@@ -70,4 +81,11 @@ public class Blog {
         this.createAt = createAt;
     }
 
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
 }
