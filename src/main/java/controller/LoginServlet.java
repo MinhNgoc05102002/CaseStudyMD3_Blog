@@ -67,7 +67,7 @@ public class LoginServlet extends HttpServlet {
 
         request.setAttribute("account", account);
         if (account == null || !account.getPassword().equals(password)) {
-            redirectPage(request, response, "login.jsp");
+            redirectPage(request, response, "login/login.jsp");
         }
         else {
             HttpSession session = request.getSession();

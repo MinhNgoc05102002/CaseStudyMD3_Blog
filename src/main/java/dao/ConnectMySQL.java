@@ -7,7 +7,7 @@ public class ConnectMySQL {
     private static Connection connection = null;
     public static Connection getConnection(){
         //if (connection == null) {
-            String jdbcURL = "jdbc:mysql://localhost:3306/blog_database";
+            String jdbcURL = "jdbc:mysql://localhost:3306/case3";
             String jdbcUser = "root";
             String jdbcPassword = "2000";
             try {
