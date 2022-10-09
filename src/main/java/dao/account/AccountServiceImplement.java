@@ -130,7 +130,7 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public void deleteByUsernameOrEmail(String nameEmail) {
-        String deleteSQL = "DELETE FROM username where accountID = ? OR email = ?";
+        String deleteSQL = "DELETE FROM username where username = ? OR email = ?";
         try {
             PreparedStatement statement = connection.prepareStatement(deleteSQL);
             statement.setString(1, nameEmail);

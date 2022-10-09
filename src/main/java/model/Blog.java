@@ -14,6 +14,30 @@ public class Blog {
     public Blog() {
     }
 
+    public Blog(String title, String content, int status, int accountID) {
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.accountID = accountID;
+    }
+
+    public Blog(String title, String content, int status, Date createAt, int accountID) {
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.createAt = createAt;
+        this.accountID = accountID;
+    }
+
+    public Blog(String title, String content, int status, Date createAt, int accountID, String image) {
+        this.title = title;
+        this.content = content;
+        this.status = status;
+        this.createAt = createAt;
+        this.accountID = accountID;
+        this.image = image;
+    }
+
     public Blog(int blogID, String title, String content, int status, Date createAt, int accountID) {
         this.blogID = blogID;
         this.title = title;

@@ -1,7 +1,6 @@
 package dao.blog;
 
 import dao.ConnectMySQL;
-import model.Account;
 import model.Blog;
 
 import java.sql.*;
@@ -47,8 +46,8 @@ public class BlogServiceImplement implements IBlogService {
 
     @Override
     public void save(Blog blog) {
-        String insert = "INSERT INTO `case3`.`blog` (`title`, `content`, `status`, `createAt`, `accountId`) " +
-                "VALUES (?, ?, b?, ?, ?);";
+        String insert = "INSERT INTO `case3`.`blog` (`title`, `content`, `status`, `createAt`, `accountId`, `image`) " +
+                "VALUES (?, ?, b?, now(), ?, ?);";
         try (Connection connection = ConnectMySQL.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
             setPreparedStatement(preparedStatement, blog).execute();
@@ -61,8 +60,9 @@ public class BlogServiceImplement implements IBlogService {
         statement.setString(1, blog.getTitle());
         statement.setString(2, blog.getContent());
         statement.setString(3, String.valueOf(blog.getStatus()));
-        statement.setString(4, String.valueOf(blog.getCreateAt()));
-        statement.setString(5, String.valueOf(blog.getAccountID()));
+//        statement.setString(4, String.valueOf(blog.getCreateAt()));
+        statement.setString(4, String.valueOf(blog.getAccountID()));
+        statement.setString(5, blog.getImage());
 
         return statement;
     }
@@ -88,7 +88,7 @@ public class BlogServiceImplement implements IBlogService {
 
     @Override
     public List<Blog> findByName(String title) {
-        String sqlFindAll = "SELECT * FROM case3.blog where blog.title like  "";
+        String sqlFindAll = "SELECT * FROM case3.blog where upper(blog.title) like  '%" + title.toUpperCase() + "%';";
 
         try {
             Statement statement = connection.createStatement();
@@ -108,16 +108,53 @@ public class BlogServiceImplement implements IBlogService {
 
     @Override
     public void deleteById(int id) {
-
+        String deleteSQL = "DELETE FROM blog where blogId = ?";
+        try {
+            PreparedStatement statement = connection.prepareStatement(deleteSQL);
+            statement.setString(1, String.valueOf(id));
+            statement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void updateById(int id, Blog blog) {
+        String sqlUpdate = "UPDATE blog set title = ?, content = ?, status = ?, image = ?  WHERE blog.id = " + id + ";";
 
+        try {
+            PreparedStatement statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1, blog.getTitle());
+            statement.setString(2, blog.getContent());
+            statement.setString(3, String.valueOf(blog.getStatus()));
+            statement.setString(4, blog.getImage());
+
+            statement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public List<Blog> findByAuthorId(int authorId) {
+        String sqlFindAll = "SELECT * FROM case3.blog where authorID = " + authorId + ";";
 
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlFindAll);
+
+            ArrayList<Blog> result = new ArrayList<>();
+            while (resultSet.next()) {
+                Blog blog = getBlogByResultSet(resultSet);
+                result.add(blog);
+            }
+            return result;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
+
 }
