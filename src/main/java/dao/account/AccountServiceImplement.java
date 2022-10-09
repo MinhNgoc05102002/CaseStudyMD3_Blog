@@ -33,9 +33,7 @@ public class AccountServiceImplement implements IAccountService {
 
 
     private PreparedStatement setPreparedStatement(PreparedStatement statement, Account account) throws SQLException {
-
         //username, email, fullname, password, phoneNumber, address, role, status
-
         statement.setString(1, account.getUsername());
         statement.setString(2, account.getEmail());
         statement.setString(3, account.getFullname());
@@ -59,6 +57,7 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public List findByName(String name) {
+        String findQuery = "SELECT * FROM account where username = " + name + " OR email = " + name;
         return null;
     }
 
@@ -76,12 +75,10 @@ public class AccountServiceImplement implements IAccountService {
     }
 
     @Override
-    public void updateById(int id, Object o) {
-    }
-    @Override
-    public void save(Object o) {
+    public void updateById(int id, Account account) {
 
     }
+
     @Override
     public void save(Account account) {
         String insert = "INSERT INTO `case3`.`account` (`username`, `email`, `fullname`, `password`, `phoneNumber`, `address`, `role`, `status`) " +
@@ -92,14 +89,6 @@ public class AccountServiceImplement implements IAccountService {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-//        String insert = "INSERT INTO account (username, email, fullname, password, phoneNumber, address, role, status) " +
-//                "VALUES (?, ?, ?, ?, ?, ?, ?, ?);";
-//        try (Connection connection = ConnectMySQL.getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
-//             setPreparedStatement(preparedStatement, account).execute();
-//        } catch (SQLException e) {
-//            throw new RuntimeException(e);
-//        }
     }
 
     @Override

@@ -6,7 +6,7 @@ import model.Account;
 import java.sql.SQLException;
 import java.util.List;
 
-public interface IAccountService extends IService{
+public interface IAccountService extends IService<Account> {
 
     public List findAll();
     Account findByUsernameOrEmail(String nameEmail);
