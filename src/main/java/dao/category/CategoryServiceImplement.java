@@ -113,15 +113,4 @@ public class CategoryServiceImplement implements ICategoryService {
         String description = resultSet.getString("description");
         return new Category(categoryID, name, description);
     }
-
-    public static void main(String[] args) {
-        CategoryServiceImplement categoryServiceImplement = new CategoryServiceImplement();
-
-        Category category = categoryServiceImplement.findById(7);
-//        System.out.println();
-        category.setName("Health1");
-        categoryServiceImplement.deleteById(7);
-
-
-    }
 }
