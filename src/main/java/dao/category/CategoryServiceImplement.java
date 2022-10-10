@@ -1,6 +1,7 @@
 package dao.category;
 
 import dao.ConnectMySQL;
+import dao.categoryBlog.CategoryBlogServiceImplement;
 import model.Account;
 import model.Category;
 
@@ -114,14 +115,4 @@ public class CategoryServiceImplement implements ICategoryService {
         return new Category(categoryID, name, description);
     }
 
-    public static void main(String[] args) {
-        CategoryServiceImplement categoryServiceImplement = new CategoryServiceImplement();
-
-        Category category = categoryServiceImplement.findById(7);
-//        System.out.println();
-        category.setName("Health1");
-        categoryServiceImplement.deleteById(7);
-
-
-    }
 }
