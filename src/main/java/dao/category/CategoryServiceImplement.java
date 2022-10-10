@@ -62,11 +62,12 @@ public class CategoryServiceImplement implements ICategoryService {
 
     @Override
     public void updateById(int id, Category category) {
-        String sqlUpdate = "UPDATE category SET name = " + category.getName() +
-                ", description = " + category.getDescription() + " WHERE categoryID = " + id + ";";
+        String sqlUpdate = "UPDATE category SET name = ?, description = ? WHERE categoryID = " + id + ";";
         try {
-            Statement statement = connection.createStatement();
-            statement.execute(sqlUpdate);
+            PreparedStatement statement = connection.prepareStatement(sqlUpdate);
+            statement.setString(1, category.getName());
+            statement.setString(2, category.getDescription());
+            statement.execute();
         }
         catch (SQLException e) {
             e.printStackTrace();
@@ -117,8 +118,9 @@ public class CategoryServiceImplement implements ICategoryService {
         CategoryServiceImplement categoryServiceImplement = new CategoryServiceImplement();
 
         Category category = categoryServiceImplement.findById(7);
+//        System.out.println();
         category.setName("Health1");
-        categoryServiceImplement.updateById(7, category);
+        categoryServiceImplement.deleteById(7);
 
 
     }
