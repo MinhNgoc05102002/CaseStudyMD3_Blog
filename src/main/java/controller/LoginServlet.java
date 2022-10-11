@@ -60,18 +60,18 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
+
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
         Account account = accountServiceImplement.findByUsernameOrEmail(email);
 
-        request.setAttribute("account", account);
+        updateSessionData(request, account);
+
         if (account == null || !account.getPassword().equals(password)) {
             redirectPage(request, response, "login/login.jsp");
         }
         else {
-            HttpSession session = request.getSession();
-            session.setAttribute("fullName", account.getFullname());
             switch (account.getRole()) {
                 case 0:
                     redirectPage(request, response, "author.jsp");
@@ -83,6 +83,19 @@ public class LoginServlet extends HttpServlet {
                     redirectPage(request, response, "index.jsp");
             }
         }
+    }
+
+    private void updateSessionData(HttpServletRequest request, Account account) {
+        HttpSession session = request.getSession();
+        if (account == null) {
+            session.invalidate();
+        }
+        else {
+            session.setAttribute("fullName", account.getFullname());
+            session.setAttribute("accountID", account.getAccountID());
+        }
+
+
     }
 
     private void redirectPage(HttpServletRequest request, HttpServletResponse response, String url){
