@@ -28,9 +28,10 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
 
     @Override
     public List<Blog> findBlogByCategoryId(int categoryID) {
-        String sqlFindBlogByCategoryID = "SELECT blog.* FROM category_blog join blog" +
-                                         "ON category_blog.blogID = blog.blogID" +
-                                         "WHERE categoryID = " + categoryID;
+        String sqlFindBlogByCategoryID = "SELECT blog.* FROM category_blog join blog " +
+                                         "ON category_blog.blogID = blog.blogID " +
+                                         "WHERE category_blog.categoryID = " + categoryID;
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindBlogByCategoryID);
@@ -63,15 +64,14 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
 
     @Override
     public List<Category> findCategoryByBlogId(int blogId) {
-        String sqlFindCategoryByBlogID = "SELECT category.* FROM category_blog join category" +
-                                         "ON category_blog.categoryId = category.categoryId" +
-                                         "WHERE blogID = " + blogId + ";";
+        String sqlFindCategoryByBlogID = "SELECT category.* FROM category join category_blog " +
+                                         "ON category_blog.categoryId = category.categoryId " +
+                                         "WHERE category_blog.blogID = " + blogId + ";";
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindCategoryByBlogID);
 
             ArrayList<Category> listResult = new ArrayList<>();
-
             while (resultSet.next()) {
                 Category category = getCategoryByResultSet(resultSet);
                 listResult.add(category);
@@ -115,10 +115,5 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
         }
     }
 
-    public static void main(String[] args) {
-        CategoryBlogServiceImplement categoryServiceImplement = new CategoryBlogServiceImplement();
 
-        List<Category> category = categoryServiceImplement.findCategoryByBlogId(1);
-        for(Category c:category) System.out.println(c.getCategoryID());
-    }
 }
