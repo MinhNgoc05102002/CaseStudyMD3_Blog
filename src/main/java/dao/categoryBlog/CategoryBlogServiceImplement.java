@@ -31,6 +31,7 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
         String sqlFindBlogByCategoryID = "SELECT blog.* FROM category_blog join blog " +
                                          "ON category_blog.blogID = blog.blogID " +
                                          "WHERE category_blog.categoryID = " + categoryID;
+
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindBlogByCategoryID);
@@ -80,7 +81,6 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
         catch (SQLException e) {
             e.printStackTrace();
         }
-        System.out.println("hi");
         return null;
 
     }
@@ -114,5 +114,6 @@ public class CategoryBlogServiceImplement implements ICategoryBlogService{
             e.printStackTrace();
         }
     }
+
 
 }
