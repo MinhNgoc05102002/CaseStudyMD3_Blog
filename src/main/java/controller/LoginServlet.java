@@ -74,7 +74,7 @@ public class LoginServlet extends HttpServlet {
         else {
             switch (account.getRole()) {
                 case 0:
-                    redirectPage(request, response, "author.jsp");
+                    redirectPage(request, response, "author?action=authorPage");
                     break;
                 case 1:
                     redirectPage(request, response, "admin.jsp");
@@ -93,9 +93,10 @@ public class LoginServlet extends HttpServlet {
         else {
             session.setAttribute("fullName", account.getFullname());
             session.setAttribute("accountID", account.getAccountID());
+            session.setAttribute("username", account.getUsername());
+            session.setAttribute("password", account.getPassword());
+            session.setAttribute("phoneNumber", account.getPhoneNumber());
         }
-
-
     }
 
     private void redirectPage(HttpServletRequest request, HttpServletResponse response, String url){
