@@ -31,6 +31,26 @@ public class BlogServiceImplement implements IBlogService {
         return null;
     }
 
+    public List<Blog> findFeatureBlog() {
+        String sqlFindAll = "SELECT blog.* FROM case3.blog JOIN case3.category_blog ON blog.blogId = category_blog.blogId " +
+                            "WHERE category_blog.categoryId = 8 LIMIT 4";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlFindAll);
+
+            ArrayList<Blog> result = new ArrayList<>();
+            while (resultSet.next()) {
+                Blog blog = getBlogByResultSet(resultSet);
+                result.add(blog);
+            }
+            return result;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     private Blog getBlogByResultSet(ResultSet resultSet) throws SQLException {
         int blogId = resultSet.getInt("blogId");
 
@@ -138,8 +158,8 @@ public class BlogServiceImplement implements IBlogService {
     }
 
     @Override
-    public List<Blog> findByAuthorId(int authorId) {
-        String sqlFindAll = "SELECT * FROM case3.blog where authorID = " + authorId + ";";
+    public List<Blog> findByAuthorId(int accountID) {
+        String sqlFindAll = "SELECT * FROM case3.blog where accountID = " + accountID + ";";
 
         try {
             Statement statement = connection.createStatement();
@@ -150,6 +170,22 @@ public class BlogServiceImplement implements IBlogService {
                 Blog blog = getBlogByResultSet(resultSet);
                 result.add(blog);
             }
+            return result;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String findAuthorNameById(int blogId) {
+        String sqlfindAuthorNameById = "SELECT username FROM case3.account JOIN Blog ON account.accountId = blog.accountId " +
+                                       "WHERE blogId = " + blogId + ";";
+
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlfindAuthorNameById);
+
+            String result = resultSet.getString("username");;
             return result;
         }catch (Exception e) {
             e.printStackTrace();
