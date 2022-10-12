@@ -58,7 +58,7 @@
     <div class="mainheading">
         <h1 class="sitetitle">Mediumish</h1>
         <p class="lead">
-            Stop trying to make it what it was. Let it be what it is
+            A website with medium style, simply perfect for bloggers
         </p>
     </div>
     <!-- Nav Bar -->
@@ -80,134 +80,42 @@
     <!-- Begin Featured
     ================================================== -->
     <section class="featured-posts">
-        <div class="section-title">
+        <div class="section-title" style="margin-top: 30px;">
             <h2><span>Featured</span></h2>
         </div>
         <div class="card-columns listfeaturedtag">
-
-            <!-- begin post -->
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-5 wrapthumbnail">
-                        <a href="post.jsp">
-                            <div class="thumbnail" style="background-image:url(assets/img/demopic/1.jpg);">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">We're living some strange times</a></h2>
-                            <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                            <div class="metafooter">
-                                <div class="wrapfooter">
+            <c:forEach items = "${listFeatureBlog}" var = "blog">
+                <!-- begin post -->
+                <div class="card">
+                    <div class="row">
+                        <div class="col-md-5 wrapthumbnail">
+                            <a href="post.jsp">
+                                <div class="thumbnail" style="background-image:url(${blog.getImage()});">
+                                </div>
+                            </a>
+                        </div>
+                        <div class="col-md-7">
+                            <div class="card-block">
+                                <h2 class="card-title"><a href="post.jsp">${blog.title}</a></h2>
+                                <h4 class="card-text">${blog.getContent().substring(0, blog.getContent().length() > 100 ? 100 : blog.getContent().length()) }...</h4>
+                                <div class="metafooter">
+                                    <div class="wrapfooter">
 								<span class="meta-footer-thumb">
 								<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
 								</span>
-                                    <span class="author-meta">
-								<span class="post-name"><a href="author.jsp">Steve</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
+                                        <span class="author-meta">
+								<span class="post-name"><a href="author.jsp">Author name</a></span><br/>
+								<span class="post-date">${blog.getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
 								</span>
-                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                        <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-5 wrapthumbnail">
-                        <a href="post.jsp">
-                            <div class="thumbnail" style="background-image:url(assets/img/demopic/2.jpg);">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">The beauty of this world is in your heart</a></h2>
-                            <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                            <div class="metafooter">
-                                <div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-                                    <span class="author-meta">
-								<span class="post-name"><a href="author.jsp">Jane</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!--end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-5 wrapthumbnail">
-                        <a href="post.jsp">
-                            <div class="thumbnail" style="background-image:url(assets/img/demopic/3.jpg);">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">Dreaming of Las Vegas Crazyness</a></h2>
-                            <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                            <div class="metafooter">
-                                <div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-                                    <span class="author-meta">
-								<span class="post-name"><a href="author.jsp">Mary</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <div class="row">
-                    <div class="col-md-5 wrapthumbnail">
-                        <a href="post.jsp">
-                            <div class="thumbnail" style="background-image:url(assets/img/demopic/4.jpg);">
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-md-7">
-                        <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">San Francisco at its best view in all seasons</a></h2>
-                            <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                            <div class="metafooter">
-                                <div class="wrapfooter">
-								<span class="meta-footer-thumb">
-								<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-								</span>
-                                    <span class="author-meta">
-								<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-								<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-								</span>
-                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
+                <!-- end post -->
+            </c:forEach>
 
         </div>
     </section>
@@ -215,156 +123,40 @@
     ================================================== -->
 
     <!-- Begin List Posts
-    ================================================== -->
+        ================================================== -->
     <section class="recent-posts">
         <div class="section-title">
             <h2><span>All Stories</span></h2>
         </div>
         <div class="card-columns listrecent">
-
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/5.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">Autumn doesn't have to be nostalgic, you know?</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+            <c:forEach items = '${requestScope["blogAuthor"]}' var = "aBlogAuthor">
+                <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
+                    <!-- begin post -->
+                    <div class="card">
+                        <a href="post.jsp">
+                            <img class="img-fluid" src="${aBlogAuthor.getKey().getImage()}" alt="Post Image">
+                        </a>
+                        <div class="card-block">
+                            <h2 class="card-title"><a href="post.jsp">${aBlogAuthor.getKey().getTitle()}</a></h2>
+                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 120 ? 120 : aBlogAuthor.getKey().getContent().length()) }...</h4>
+                            <div class="metafooter">
+                                <div class="wrapfooter">
+                            <span class="meta-footer-thumb">
+                            <a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
+                            </span>
+                                    <span class="author-meta">
+                            <span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().getUsername()}">${aBlogAuthor.getValue().getUsername()}</a></span><br/>
+                            <span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
+                            </span>
+                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- end post -->
+                    <!-- end post -->
+                </c:if>
 
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/6.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">Best galleries in the world with photos</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/7.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">Little red dress and a perfect summer</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/8.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">Thinking outside the box can help you prosper</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/9.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">10 Things you should know about choosing your house</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
-
-            <!-- begin post -->
-            <div class="card">
-                <a href="post.jsp">
-                    <img class="img-fluid" src="assets/img/demopic/10.jpg" alt="">
-                </a>
-                <div class="card-block">
-                    <h2 class="card-title"><a href="post.jsp">Visiting the world means learning cultures</a></h2>
-                    <h4 class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</h4>
-                    <div class="metafooter">
-                        <div class="wrapfooter">
-						<span class="meta-footer-thumb">
-						<a href="author.jsp"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-						</span>
-                            <span class="author-meta">
-						<span class="post-name"><a href="author.jsp">Sal</a></span><br/>
-						<span class="post-date">22 July 2017</span><span class="dot"></span><span class="post-read">6 min read</span>
-						</span>
-                            <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- end post -->
+            </c:forEach>
 
         </div>
     </section>
@@ -385,7 +177,6 @@
     </div>
     <!-- End Footer
     ================================================== -->
-
 </div>
 <!-- /.container -->
 

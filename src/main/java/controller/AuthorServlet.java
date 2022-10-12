@@ -50,11 +50,13 @@ public class AuthorServlet extends HttpServlet {
 
     private void goToAuthorPage(HttpServletRequest req, HttpServletResponse resp) {
         Account account = (Account) req.getAttribute("currentUser");
+        if (account == null) {
+            account = accountService.findByUsernameOrEmail(req.getParameter("currentUser"));
+        }
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
         for (int i = 0; i < listBlog.size(); i++) {
             Account a = accountService.findById(listBlog.get(i).getAccountID());
-//            System.out.println(a.getFullname());
             listBlogAuthor.add(new CustomPair<Blog, Account>(listBlog.get(i), a));
         }
         req.setAttribute("blogAuthor", listBlogAuthor);
