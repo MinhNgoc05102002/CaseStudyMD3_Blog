@@ -139,13 +139,13 @@ public class BlogServiceImplement implements IBlogService {
 
     @Override
     public List<Blog> findByAuthorId(int authorId) {
-        String sqlFindAll = "SELECT * FROM case3.blog where authorID = " + authorId + ";";
+        String sqlFindAll = "SELECT * FROM case3.blog where accountID = " + authorId + ";";
 
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindAll);
 
-            ArrayList<Blog> result = new ArrayList<>();
+            List<Blog> result = new ArrayList<>();
             while (resultSet.next()) {
                 Blog blog = getBlogByResultSet(resultSet);
                 result.add(blog);

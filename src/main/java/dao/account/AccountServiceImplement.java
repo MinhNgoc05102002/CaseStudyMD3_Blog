@@ -49,6 +49,18 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public Account findById(int id) {
+        String sqlFindByID = "SELECT * FROM account WHERE accountID = " + id;
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlFindByID);
+
+            while (resultSet.next()) {
+                Account account = getAccountByResultSet(resultSet);
+                return account;
+            }
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
         return null;
     }
 
