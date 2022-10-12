@@ -75,22 +75,22 @@
                 <p class="left_nav-title">Manager</p>
                 <ul class="left_nav-menu">
                     <li class="left_nav-item">
-                        <a href="#" class="left_nav-link now">
+                        <label for="blog_manager" class="left_nav-link now">
                             <i class="fas fa-chevron-right"></i>
                             Blog manager
-                        </a>
+                        </label>
                     </li>
                     <li class="left_nav-item">
-                        <a href="#" class="left_nav-link">
+                        <label for="category_manager" class="left_nav-link">
                             <i class="fas fa-chevron-right"></i>
                             Category manager
-                        </a>
+                        </label>
                     </li>
                     <li class="left_nav-item">
-                        <a href="#" class="left_nav-link">
+                        <label for="account_manager" class="left_nav-link">
                             <i class="fas fa-chevron-right"></i>
                             Account manager
-                        </a>
+                        </label>
                     </li>
                 </ul>
                 <p class="left_nav-title">Other Option</p>
