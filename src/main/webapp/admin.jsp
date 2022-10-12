@@ -114,7 +114,101 @@
 
         <!-- Begin Post -->
         <div class="right__content col-md-9 col-lg-9 col-sm-12">
+            <input class="admin_choice" type="radio" name="manager" id="blog_manager">
+            <input class="admin_choice" type="radio" name="manager" id="category_manager">
+            <input class="admin_choice" type="radio" name="manager" id="account_manager">
+            <div class="blog__manager">
+                <!-- <div class="manager_title">Blog manager</div> -->
+                <table class="table">
+                    <tr class="heading_table">
+                        <th style="border-radius: 5px 0 0 0;">BlogID</th>
+                        <th>AccountID</th>
+                        <th>Create At</th>
+                        <th>Title</th>
+                        <th>Content</th>
+                        <th>Category</th>
+                        <th>Image</th>
+                        <th>Status</th>
+                        <th style="border-radius: 0 5px 0 0;"> </th>
+                    </tr>
+                    <tr class="body_table">
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2022-10-07 22:57:09</td>
+                        <td>What is a list of skills that are amazing if you learn them?</td>
+                        <td>Writing. I've never looked at writing as a skill. If I had started writing at a young age I feel I would have had significant advantages growing up. So, don’t be me, think, write and grow with it.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr class="body_table">
+                        <td>1</td>
+                        <td>1</td>
+                        <td>2022-10-07 22:57:09</td>
+                        <td>What is a list of skills that are amazing if you learn them?</td>
+                        <td>Writing. I’ve never looked at writing as a skill. If I had started writing at a young age I feel I would have had significant advantages growing up. So, don’t be me, think, write and grow with it.</td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
 
+                </table>
+            </div>
+
+            <!-- Category manager -->
+
+            <div class="category__manager">
+                <!-- <div class="manager_title">Blog manager</div> -->
+                <table class="table">
+                    <tr class="heading_table">
+                        <th style="border-radius: 5px 0 0 0;">CategoryID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Edit</th>
+                        <th style="border-radius: 0 5px 0 0;">x</th>
+                    </tr>
+                    <tr class="body_table">
+                        <td>1</td>
+                        <td>Lifestyle</td>
+                        <td>lifestyle blogs include a larger variety of topics from productivity, to wellness, workouts, nutrition, and other aspects of living a better life. </td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+            </div>
+
+
+            <div class="account__manager">
+                <!-- <div class="manager_title">Blog manager</div> -->
+                <table class="table">
+                    <tr class="heading_table">
+                        <th style="border-radius: 5px 0 0 0;">AccountID</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Fullname</th>
+                        <th>Password</th>
+                        <th>PhoneNumber</th>
+                        <th>Description</th>
+                        <th>Role</th>
+                        <th style="border-radius: 0 5px 0 0;">Status</th>
+                    </tr>
+                    <tr class="body_table">
+                        <td>1</td>
+                        <td>Jane</td>
+                        <td>linhninh@gmail.com</td>
+                        <td>Tran My Linh</td>
+                        <td>Linh2002</td>
+                        <td>0399620226</td>
+                        <td>People don’t leave because things are hard.They leave because it’s no longer worth it</td>
+                        <td>user</td>
+                        <td>true</td>
+                    </tr>
+
+                </table>
+            </div>
 
         </div>
         <!-- End Post -->

@@ -54,3 +54,76 @@
 .left_nav-link:focus{
     text-decoration: none;
 }
+
+
+.right_content {
+    padding: 10px 0px;
+    padding-bottom: 30px;
+}
+
+/* Table manager */
+.blog__manager {
+    /* display: none; */
+    transform: translateX(150%);
+    transition: transform linear 0.2s;
+}
+.category__manager {
+    /* display: none; */
+    transform: translateX(150%);
+    transition: transform linear 0.2s;
+}
+.account__manager {
+    /* display: none; */
+    transform: translateX(150%);
+    transition: transform linear 0.2s;
+}
+.admin_choice {
+    display: none;
+}
+
+.heading_table {
+    line-height: 35px;
+    background-color: rgb(81, 80, 80);
+    color: white;
+}
+
+.header {
+    margin-bottom: 30px;
+}
+.body_table {
+    background-color: rgb(245, 245, 245);
+    padding: 10px 10px;
+    border-bottom: 5px solid white;
+    border-top: 5px solid white;
+}
+#blog_manager:checked ~ .blog__manager {
+    transform: translateX(0);
+    display: block;
+}
+#blog_manager:checked ~ .account__manager{
+    display: none;
+}
+#blog_manager:checked ~ .category__manager{
+    display: none;
+}
+
+#category_manager:checked ~ .category__manager {
+    transform: translateX(0);
+    display: block;
+}
+#category_manager:checked ~ .blog__manager{
+    display: none;
+}
+#category_manager:checked ~ .account__manager{
+    display: none;
+}
+#account_manager:checked ~ .account__manager {
+    transform: translateX(0);
+    display: block;
+}
+#account_manager:checked ~ .blog__manager{
+    display: none;
+}
+#account_manager:checked ~ .category__manager{
+    display: none;
+}
