@@ -52,6 +52,7 @@ public class AuthorServlet extends HttpServlet {
         Account account = (Account) req.getAttribute("currentUser");
         if (account == null) {
             account = accountService.findByUsernameOrEmail(req.getParameter("currentUser"));
+            req.setAttribute("currentUser", account);
         }
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
