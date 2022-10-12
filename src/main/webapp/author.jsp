@@ -97,7 +97,7 @@
             </div>
             <%if(session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
             <div class="author__nav">
-                <a href="#" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
+                <a onclick="document.getElementById('add_blog-dialog').showModal()" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
                 <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
             </div>
             <%}%>
@@ -239,11 +239,37 @@
 </div>
 <!-- End Footer
 ================================================== -->
-<div class="dialog">
-    <dialog id="dialog-login">
 
+<%--================== Begin dialog ================ --%>
+<div class="list_dialog">
+    <dialog style="border: 2px solid gray; border-radius: 2px;" id="add_blog-dialog">
+        <form action="">
+            <Strong>Blog infomations</Strong>
+            <hr>
+            <img id="add_blog_image" width="400px" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+                 alt="Blog image">
+            <table>
+                <tr>
+                    <td><label for="image_blog_input">Blog image</label></td>
+                    <td><input id="image_blog_input" type="text" onchange="document.getElementById('add_blog_image').src = this.value"></td>
+                </tr>
+                <tr>
+                    <td><label for="title_blog_input">Blog title</label></td>
+                    <td><input id="title_blog_input" type="text"></td>
+                </tr>
+                <tr>
+                    <td><label for="content_blog_input">Content</label></td>
+                    <td><textarea name="" id="content_blog_input" cols="30" rows="10"></textarea></td>
+                </tr>
+            </table>
+            <div style="text-align: center;">
+                <input type="submit" value="Post">
+                <input type="button" value="Cancel" onclick="document.getElementById('add_blog-dialog').close()">
+            </div>
+        </form>
     </dialog>
 </div>
+<%--================== End dialog ================ --%>
 <!-- Bootstrap core JavaScript
 ================================================== -->
 <!-- Placed at the end of the document so the pages load faster -->
