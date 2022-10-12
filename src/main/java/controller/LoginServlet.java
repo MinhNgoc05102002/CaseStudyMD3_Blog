@@ -74,7 +74,8 @@ public class LoginServlet extends HttpServlet {
         else {
             switch (account.getRole()) {
                 case 0:
-                    redirectPage(request, response, "author?action=authorPage");
+                    request.setAttribute("currentUser",account);
+                    redirectPage(request, response, "/author?action=authorPage");
                     break;
                 case 1:
                     redirectPage(request, response, "admin.jsp");

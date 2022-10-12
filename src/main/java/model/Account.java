@@ -7,7 +7,8 @@ public class Account {
     private String fullname;
     private String password;
     private String phoneNumber;
-    private String address;
+
+    private String description;
     private int role;
     private int status;
     public Account() {
@@ -20,7 +21,7 @@ public class Account {
         this.fullname = fullname;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.description = address;
         this.role = role;
         this.status = status;
     }
@@ -31,7 +32,7 @@ public class Account {
         this.fullname = fullname;
         this.password = password;
         this.phoneNumber = phoneNumber;
-        this.address = address;
+        this.description = address;
         this.role = role;
         this.status = status;
     }
@@ -43,7 +44,7 @@ public class Account {
         this.password = password;
         this.status = 1;
         this.role = 0;
-        this.address = "";
+        this.description = "";
         this.phoneNumber = "";
     }
 
@@ -95,12 +96,12 @@ public class Account {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAddress() {
-        return address;
+    public String getDescription() {
+        return description;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getRole() {

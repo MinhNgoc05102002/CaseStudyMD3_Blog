@@ -33,13 +33,13 @@ public class AccountServiceImplement implements IAccountService {
 
 
     private PreparedStatement setPreparedStatement(PreparedStatement statement, Account account) throws SQLException {
-        //username, email, fullname, password, phoneNumber, address, role, status
+        //username, email, fullname, password, phoneNumber, description, role, status
         statement.setString(1, account.getUsername());
         statement.setString(2, account.getEmail());
         statement.setString(3, account.getFullname());
         statement.setString(4, account.getPassword());
         statement.setString(5, account.getPhoneNumber());
-        statement.setString(6, account.getAddress());
+        statement.setString(6, account.getDescription());
 
         statement.setString(7, String.valueOf(account.getRole()));
         statement.setString(8, String.valueOf(account.getStatus()));
@@ -78,7 +78,7 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public void save(Account account) {
-        String insert = "INSERT INTO `case3`.`account` (`username`, `email`, `fullname`, `password`, `phoneNumber`, `address`, `role`, `status`) " +
+        String insert = "INSERT INTO `case3`.`account` (`username`, `email`, `fullname`, `password`, `phoneNumber`, `description`, `role`, `status`) " +
                 "VALUES (?, ?, ?, ?, ?, ?, b?, b?);";
         try (Connection connection = ConnectMySQL.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(insert)) {
@@ -117,10 +117,10 @@ public class AccountServiceImplement implements IAccountService {
         String fullname = resultSet.getString("fullname");
         String password = resultSet.getString("password");
         String phoneNumber = resultSet.getString("phoneNumber");
-        String address = resultSet.getString("address");
+        String description = resultSet.getString("description");
         int role = resultSet.getInt("role");
         int status = resultSet.getInt("status");
-        return new Account(accountID, username, email, fullname, password, phoneNumber, address, role, status);
+        return new Account(accountID, username, email, fullname, password, phoneNumber, description, role, status);
     }
 
     @Override

@@ -87,7 +87,7 @@
         </div>
         <div class="author__info col-lg-10">
             <div class="author__name">
-                Nguyễn Minh Ngọc
+                ${currentUser.fullname}
             </div>
             <div class="author__description">
                 Stop trying to make it what it was. Let it be what it is. Stop trying to make it what it was. Let it be what it is
