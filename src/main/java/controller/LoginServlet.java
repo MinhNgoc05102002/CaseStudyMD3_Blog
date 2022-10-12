@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
                 redirectPage(request, response, "login/register.jsp");
                 break;
             default:
-                redirectPage(request, response,"index.jsp");
+                redirectPage(request, response,"");
         }
     }
 
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                 createAnAccount(request,response);
                 break;
             default:
-                redirectPage(request, response,"index.jsp");
+                redirectPage(request, response,"");
         }
     }
 
@@ -82,7 +82,7 @@ public class LoginServlet extends HttpServlet {
                     redirectPage(request, response, "admin.jsp");
                     break;
                 default:
-                    redirectPage(request, response, "index.jsp");
+                    redirectPage(request, response, "");
             }
         }
     }

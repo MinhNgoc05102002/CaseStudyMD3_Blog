@@ -47,8 +47,14 @@ public class HomeServlet extends HttpServlet {
         }
         request.setAttribute("blogAuthor", listBlogAuthor);
 
+
         List<Blog> listFeatureBlog = this.blogService.findFeatureBlog();
-        request.setAttribute("listFeatureBlog", listFeatureBlog);
+        List<CustomPair<Blog, Account>> listFeatureBlogAuthor = new ArrayList<>();
+        for (int i = 0; i < listFeatureBlog.size(); i++) {
+            Account a = accountService.findById(listFeatureBlog.get(i).getAccountID());
+            listFeatureBlogAuthor.add(new CustomPair<Blog, Account>(listFeatureBlog.get(i), a));
+        }
+        request.setAttribute("FeatureBlogAuthor", listFeatureBlogAuthor);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         dispatcher.forward(request, response);
