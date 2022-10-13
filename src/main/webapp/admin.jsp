@@ -131,28 +131,19 @@
                         <th>Status</th>
                         <th style="border-radius: 0 5px 0 0;"> </th>
                     </tr>
+                    <c:forEach items = '${requestScope["listAllBlog"]}' var = "blog">
                     <tr class="body_table">
-                        <td>1</td>
-                        <td>1</td>
-                        <td>2022-10-07 22:57:09</td>
-                        <td>What is a list of skills that are amazing if you learn them?</td>
-                        <td>Writing. I've never looked at writing as a skill. If I had started writing at a young age I feel I would have had significant advantages growing up. So, don’t be me, think, write and grow with it.</td>
+                        <td>${blog.getBlogID()}</td>
+                        <td>${blog.getAccountID()}</td>
+                        <td>${blog.getCreateAt()}</td>
+                        <td>${blog.getTitle()}</td>
+                        <td>${blog.getContent().substring(0, blog.getContent().length() > 50 ? 50 : blog.getContent().length() )}...</td>
                         <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
+                        <td><img src="${blog.getImage()}" style="width: 100px;"></td>
+                        <td>${blog.getStatus()==1?"show":"hide"}</td>
+                        <td>x</td>
                     </tr>
-                    <tr class="body_table">
-                        <td>1</td>
-                        <td>1</td>
-                        <td>2022-10-07 22:57:09</td>
-                        <td>What is a list of skills that are amazing if you learn them?</td>
-                        <td>Writing. I’ve never looked at writing as a skill. If I had started writing at a young age I feel I would have had significant advantages growing up. So, don’t be me, think, write and grow with it.</td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
+                    </c:forEach>
 
                 </table>
             </div>
@@ -169,14 +160,15 @@
                         <th>Edit</th>
                         <th style="border-radius: 0 5px 0 0;">x</th>
                     </tr>
+                    <c:forEach items = '${requestScope["listAllCategory"]}' var = "category">
                     <tr class="body_table">
-                        <td>1</td>
-                        <td>Lifestyle</td>
-                        <td>lifestyle blogs include a larger variety of topics from productivity, to wellness, workouts, nutrition, and other aspects of living a better life. </td>
+                        <td>${category.getCategoryID()}</td>
+                        <td>${category.getName()}</td>
+                        <td>${category.getDescription()}</td>
                         <td></td>
-                        <td></td>
+                        <td>x</td>
                     </tr>
-
+                    </c:forEach>
                 </table>
             </div>
 
@@ -195,18 +187,19 @@
                         <th>Role</th>
                         <th style="border-radius: 0 5px 0 0;">Status</th>
                     </tr>
+                    <c:forEach items = '${requestScope["listAllAccounts"]}' var = "account">
                     <tr class="body_table">
-                        <td>1</td>
-                        <td>Jane</td>
-                        <td>linhninh@gmail.com</td>
-                        <td>Tran My Linh</td>
-                        <td>Linh2002</td>
-                        <td>0399620226</td>
-                        <td>People don’t leave because things are hard.They leave because it’s no longer worth it</td>
-                        <td>user</td>
-                        <td>true</td>
+                        <td>${account.getAccountID()}</td>
+                        <td>${account.getUsername()}</td>
+                        <td>${account.getEmail()}</td>
+                        <td>${account.getFullname()}</td>
+                        <td>${account.getPassword()}</td>
+                        <td>${account.getPhoneNumber()}</td>
+                        <td>${account.getDescription().substring(0, account.getDescription().length() > 50 ? 50 : account.getDescription().length() )}...</td>
+                        <td>${account.getRole()==1?"admin":"user"}</td>
+                        <td>${account.getStatus()==1?"enable":"blocked"}</td>
                     </tr>
-
+                    </c:forEach>
                 </table>
             </div>
 

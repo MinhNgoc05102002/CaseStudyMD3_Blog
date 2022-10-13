@@ -79,7 +79,8 @@ public class LoginServlet extends HttpServlet {
                     redirectPage(request, response, "/author?action=authorPage");
                     break;
                 case 1:
-                    redirectPage(request, response, "admin.jsp");
+                    redirectPage(request, response, "/admin");
+                    System.out.println("sag admin");
                     break;
                 default:
                     redirectPage(request, response, "");
