@@ -27,6 +27,8 @@
 
     <!-- author css -->
     <link rel="stylesheet" href="./assets/css/author.css">
+    <%--    dialog css--%>
+    <link rel="stylesheet" href="./assets/css/dialog.css">
 </head>
 <body>
 
@@ -98,7 +100,7 @@
             <%if(session.getAttribute("username")!=null &&
                 session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
             <div class="author__nav">
-                <a onclick="showAddBlogDialog('')" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
+                <a onclick="showAddBlogDialog('');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
                 <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
             </div>
             <%}%>
@@ -181,11 +183,12 @@
                 </tr>
                 <tr>
                     <td><label for="content_blog_input">Content</label></td>
-                    <td><textarea style="height: 200px" name="" id="content_blog_input" cols="30" rows="10"></textarea></td>
+                    <td><textarea name="" id="content_blog_input" cols="30" rows="10"></textarea></td>
                 </tr>
             </table>
             <div style="text-align: center;">
-                <input type="submit" value="Post">
+                <input id="editBlogButton" type="submit" value="Edit">
+                <input id="postNewBlogButton" type="submit" value="Post">
                 <input type="button" value="Cancel" onclick="document.getElementById('add_blog-dialog').close()">
             </div>
         </form>
@@ -199,6 +202,30 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="assets/js/dialog.js"></script>
+<script>
+    function showAddBlogDialog(blogID){
+        let blogDialog = document.getElementById('add_blog-dialog')
+        let postButton = document.getElementById('postNewBlogButton')
+        let editButton = document.getElementById('editBlogButton')
+        let image = document.getElementById('image_blog_input')
+        image.value = 'http://localhost'
+        if (blogID.trim() != "") {
+            postButton.style.display = 'none';
+        } else {
+            editButton.style.display = 'none';
+
+        }
+        blogDialog.showModal()
+    }
+    function changeImageSource(source) {
+        let blogImage = document.getElementById('add_blog_image')
+        if (source=="") {
+            blogImage.src = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+        }
+        else {
+            blogImage.src = source
+        }
+    }
+</script>
 </body>
 </html>
