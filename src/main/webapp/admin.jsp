@@ -131,16 +131,16 @@
                         <th>Status</th>
                         <th style="border-radius: 0 5px 0 0;"> </th>
                     </tr>
-                    <c:forEach items = '${requestScope["listAllBlog"]}' var = "blog">
+                    <c:forEach items = '${requestScope["listBlogCategory"]}' var = "blog">
                     <tr class="body_table">
-                        <td>${blog.getBlogID()}</td>
-                        <td>${blog.getAccountID()}</td>
-                        <td>${blog.getCreateAt()}</td>
-                        <td>${blog.getTitle()}</td>
-                        <td>${blog.getContent().substring(0, blog.getContent().length() > 50 ? 50 : blog.getContent().length() )}...</td>
-                        <td></td>
-                        <td><img src="${blog.getImage()}" style="width: 100px;"></td>
-                        <td>${blog.getStatus()==1?"show":"hide"}</td>
+                        <td>${blog.getKey().getBlogID()}</td>
+                        <td>${blog.getKey().getAccountID()}</td>
+                        <td>${blog.getKey().getCreateAt()}</td>
+                        <td>${blog.getKey().getTitle()}</td>
+                        <td>${blog.getKey().getContent().substring(0, blog.getKey().getContent().length() > 50 ? 50 : blog.getKey().getContent().length() )}...</td>
+                        <td>${blog.getValue()}</td>
+                        <td><img src="${blog.getKey().getImage()}" style="width: 100px;"></td>
+                        <td>${blog.getKey().getStatus()==1?"show":"hide"}</td>
                         <td>x</td>
                     </tr>
                     </c:forEach>

@@ -38,9 +38,23 @@ public class AdminServlet extends HttpServlet {
         List<Category> listAllCategory = categoryService.findAll();
 //        List<CategoryBlog> categoryBlog = categoryBlogService.findAll();
 
-        request.setAttribute("listAllBlog", listAllBlog);
+//        request.setAttribute("listAllBlog", listAllBlog);
         request.setAttribute("listAllAccounts", listAllAccounts);
         request.setAttribute("listAllCategory", listAllCategory);
+
+        List<CustomPair<Blog, String>> listBlogCategory = new ArrayList<>();
+        for(int i=0; i<listAllBlog.size(); i++){
+            List<Category> listCategory = categoryBlogService.findCategoryByBlogId(listAllBlog.get(i).getBlogID());
+            String categoryString="nothing";
+            if(listCategory != null){
+                categoryString = listCategory.get(0).getName();
+            }
+            for(int j=1; j<listCategory.size(); j++) {
+                categoryString += ", " + listCategory.get(j).getName();
+            }
+            listBlogCategory.add(new CustomPair<Blog, String>(listAllBlog.get(i), categoryString));
+        }
+        request.setAttribute("listBlogCategory", listBlogCategory);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
         dispatcher.forward(request, response);
