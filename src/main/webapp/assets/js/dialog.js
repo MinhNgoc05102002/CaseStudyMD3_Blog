@@ -1,7 +1,13 @@
 function showAddBlogDialog(blogID){
-    if(blogID == "") {
-        document.getElementById('add_blog-dialog').showModal()
-    }
+    let blogDialog = document.getElementById('add_blog-dialog')
+    let postButton = document.getElementById('postNewBlogButton')
+    let editButton = document.getElementById('editBlogButton')
+    let image = document.getElementById('image_blog_input')
+    // image.value = 'http://localhost'
+    // if(blogID.trim() == "") {
+    //     editButton.style.display = 'inline-block';
+    // }
+    blogDialog.showModal()
 }
 function changeImageSource(source) {
     let blogImage = document.getElementById('add_blog_image')

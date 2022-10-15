@@ -1,0 +1,10 @@
+#image_blog_input, #title_blog_input, #content_blog_input {
+    width: 300px;
+}
+
+#content_blog_input{
+    height: 100px;
+    flex: none;
+    resize: none;
+    margin-bottom: 10px;
+}
