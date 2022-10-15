@@ -35,8 +35,17 @@ public class AuthorServlet extends HttpServlet {
             case "postBlog":
                 postBlog(req, resp);
                 break;
-
+            case "deleteBlog":
+                deleteBlog(req, resp);
+                break;
         }
+    }
+
+    private void deleteBlog(HttpServletRequest req, HttpServletResponse resp) {
+        int id = Integer.parseInt(req.getParameter("id"));
+//        System.out.println(id);
+        blogService.deleteById(id);
+        goToAuthorPage(req, resp);
     }
 
     private void postBlog(HttpServletRequest req, HttpServletResponse resp) {
@@ -86,6 +95,9 @@ public class AuthorServlet extends HttpServlet {
                 }
             }
             req.setAttribute("currentUser", account);
+        }
+        if (account==null) {
+            redirectPage(req, resp, "/");
         }
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();

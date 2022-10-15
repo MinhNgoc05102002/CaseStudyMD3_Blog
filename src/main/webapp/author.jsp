@@ -202,10 +202,10 @@
         </form>
     </dialog>
     <dialog id="deleteBlogDialog">
-        <form id="deleteBlogForm" method="post" action="author?action=">
+        <form id="deleteBlogForm" method="post" action="author?">
             <p>Do you want to delete this blog?</p>
             <input type="submit" value="Yes">
-            <input type="button" value="No">
+            <input type="button" value="No" onclick="closeDeleteBlogDialog()">
         </form>
     </dialog>
 </div>

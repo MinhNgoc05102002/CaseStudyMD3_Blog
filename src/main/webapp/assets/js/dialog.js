@@ -27,6 +27,9 @@ function changeImageSource(source) {
 
 //deleteBlogDialog
 function showDeleteBlogDialog(blogID) {
-
+    document.getElementById('deleteBlogForm').action = "author?action=deleteBlog&id=" + blogID
     document.getElementById("deleteBlogDialog").showModal()
+}
+function closeDeleteBlogDialog() {
+    document.getElementById("deleteBlogDialog").close()
 }
