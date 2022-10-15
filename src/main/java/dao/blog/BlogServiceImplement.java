@@ -141,7 +141,7 @@ public class BlogServiceImplement implements IBlogService {
 
     @Override
     public void updateById(int id, Blog blog) {
-        String sqlUpdate = "UPDATE blog set title = ?, content = ?, status = ?, image = ?  WHERE blog.id = " + id + ";";
+        String sqlUpdate = "UPDATE blog set title = ?, content = ?, status = ?, image = ?  WHERE blogID = " + id + ";";
 
         try {
             PreparedStatement statement = connection.prepareStatement(sqlUpdate);

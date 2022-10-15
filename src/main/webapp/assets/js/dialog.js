@@ -2,8 +2,9 @@ function showAddBlogDialog(blogID, imageSource, title, content) {
     let blogDialog = document.getElementById('add_blog-dialog')
     let postButton = document.getElementById('postNewBlogButton')
     let editButton = document.getElementById('editBlogButton')
-    let inputID = document.getElementsByTagName('blogID')
-    inputID.value =  blogID.toString().trim()
+    let inputID = document.getElementById('blogID')
+    inputID.value =  blogID.trim()
+    console.log(inputID.value + "id")
     if (inputID.value === "") {
         editButton.style.display = 'none';
     } else {
