@@ -63,19 +63,13 @@
 
 /* Table manager */
 .blog__manager {
-    /* display: none; */
-    transform: translateX(150%);
-    transition: transform linear 0.2s;
+     display: none;
 }
 .category__manager {
-    /* display: none; */
-    transform: translateX(150%);
-    transition: transform linear 0.2s;
+     display: none;
 }
 .account__manager {
     /* display: none; */
-    transform: translateX(150%);
-    transition: transform linear 0.2s;
 }
 .admin_choice {
     display: none;
@@ -99,7 +93,6 @@
     border-top: 5px solid white;
 }
 #blog_manager:checked ~ .blog__manager {
-    transform: translateX(0);
     display: block;
 }
 #blog_manager:checked ~ .account__manager{
@@ -110,7 +103,6 @@
 }
 
 #category_manager:checked ~ .category__manager {
-    transform: translateX(0);
     display: block;
 }
 #category_manager:checked ~ .blog__manager{
@@ -120,7 +112,6 @@
     display: none;
 }
 #account_manager:checked ~ .account__manager {
-    transform: translateX(0);
     display: block;
 }
 #account_manager:checked ~ .blog__manager{

@@ -27,9 +27,25 @@ public class AdminServlet extends HttpServlet {
             action = "";
         }
         switch (action) {
+            case "blockAccount":
+                handleBlockAccount(request, response);
+                break;
             default:
                 goToAdminPage(request, response);
         }
+    }
+
+    private void handleBlockAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("accId"));
+        Account account = accountService.findById(id);
+        if(this.accountService.findById(id).getStatus() == 0)
+            account.setStatus(1);
+        else
+            account.setStatus(0);
+
+        this.accountService.updateById(id, account);
+
+        goToAdminPage(request, response);
     }
 
     private void goToAdminPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

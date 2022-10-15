@@ -206,10 +206,10 @@
                         <td style="text-align: center">${account.getRole()==1?"admin":"user"}</td>
                         <td style="text-align: center">
                             <c:if test = "${account.getStatus()==1}">
-                                <a class="enableIcon" href=""><i class="fas fa-check-circle"></i></a>
+                                <a class="enableIcon" href="/admin?action=blockAccount&accId=${account.getAccountID()}"><i class="fas fa-check-circle"></i></a>
                             </c:if>
                             <c:if test = "${account.getStatus()==0}">
-                                <a class="blockIcon" href=""><i class="fas fa-ban"></i></a>
+                                <a class="blockIcon" href="/admin?action=blockAccount&accId=${account.getAccountID()}"><i class="fas fa-ban"></i></a>
                             </c:if>
                         </td>
                     </tr>

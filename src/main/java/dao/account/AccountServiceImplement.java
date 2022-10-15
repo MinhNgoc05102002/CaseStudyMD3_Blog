@@ -85,7 +85,21 @@ public class AccountServiceImplement implements IAccountService {
 
     @Override
     public void updateById(int id, Account account) {
-
+        String updateSQL = "UPDATE account SET username = ?, fullname = ?, password = ?, phoneNumber = ?, description = ?, role = ?, status = ? WHERE accountId = " + account.getAccountID() + ";" ;
+        try {
+            PreparedStatement statement = connection.prepareStatement(updateSQL);
+            statement.setString(1, account.getUsername());
+            statement.setString(2, account.getFullname());
+            statement.setString(3, account.getPassword());
+            statement.setString(4, account.getPhoneNumber());
+            statement.setString(5, account.getDescription());
+            statement.setInt(6, account.getRole());
+            statement.setInt(7, account.getStatus());
+            statement.execute();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
