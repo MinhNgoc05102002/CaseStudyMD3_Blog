@@ -1,12 +1,17 @@
-function showAddBlogDialog(blogID){
+function showAddBlogDialog(blogID, imageSource, title, content) {
     let blogDialog = document.getElementById('add_blog-dialog')
     let postButton = document.getElementById('postNewBlogButton')
     let editButton = document.getElementById('editBlogButton')
-    let image = document.getElementById('image_blog_input')
-    // image.value = 'http://localhost'
-    // if(blogID.trim() == "") {
-    //     editButton.style.display = 'inline-block';
-    // }
+    let inputID = document.getElementsByTagName('blogID')
+    inputID.value =  blogID.toString().trim()
+    if (inputID.value === "") {
+        editButton.style.display = 'none';
+    } else {
+        document.getElementById('image_blog_input').value = imageSource
+        document.getElementById('title_blog_input').value = title
+        document.getElementById('content_blog_input').value = content
+        postButton.style.display = 'none';
+    }
     blogDialog.showModal()
 }
 function changeImageSource(source) {

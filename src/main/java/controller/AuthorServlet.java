@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,10 +46,11 @@ public class AuthorServlet extends HttpServlet {
         String blogID = req.getParameter("blogID");
         HttpSession session = req.getSession();
         if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
-            blogService.save( new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource));
+            Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             //    title,content,status,createAt,accountID,image
+            blogService.save(a);
         }
-        redirectPage(req, resp, "author.jsp");
+        goToAuthorPage(req, resp);
     }
 
     @Override
@@ -68,8 +68,20 @@ public class AuthorServlet extends HttpServlet {
 
     private void goToAuthorPage(HttpServletRequest req, HttpServletResponse resp) {
         Account account = (Account) req.getAttribute("currentUser");
+
         if (account == null) {
-            account = accountService.findByUsernameOrEmail(req.getParameter("currentUser"));
+            if (req.getParameter("currentUser") != null) {
+                account = accountService.findByUsernameOrEmail(req.getParameter("currentUser"));
+            }
+            else {
+                HttpSession session = req.getSession();
+                if (session.getAttribute("username") != null) {
+                    account = accountService.findByUsernameOrEmail((String) session.getAttribute("username"));
+                }
+                else {
+                    redirectPage(req, resp, "/");
+                }
+            }
             req.setAttribute("currentUser", account);
         }
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());

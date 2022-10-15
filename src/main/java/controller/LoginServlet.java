@@ -75,7 +75,6 @@ public class LoginServlet extends HttpServlet {
             switch (account.getRole()) {
                 case 0:
                     request.setAttribute("currentUser",account);
-                    System.out.println(account.getDescription());
                     redirectPage(request, response, "/author?action=authorPage");
                     break;
                 case 1:
