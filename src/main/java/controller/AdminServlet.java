@@ -38,10 +38,10 @@ public class AdminServlet extends HttpServlet {
     private void handleBlockAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("accId"));
         Account account = accountService.findById(id);
-        if(this.accountService.findById(id).getStatus() == 0)
-            account.setStatus(1);
-        else
+        if(this.accountService.findById(id).getStatus() == 1 && account.getRole() == 0)
             account.setStatus(0);
+        else
+            account.setStatus(1);
 
         this.accountService.updateById(id, account);
 

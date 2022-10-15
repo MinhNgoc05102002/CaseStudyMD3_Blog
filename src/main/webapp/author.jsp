@@ -97,11 +97,16 @@
             <div class="author__numberBlog">
                 200 blogs
             </div>
-            <%if(session.getAttribute("username")!=null &&
+            <%if(session.getAttribute("username")!=null && session.getAttribute("status") == (Integer)1 &&
                 session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
+                <div class="author__nav">
+                    <a onclick="showAddBlogDialog('','','','');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
+                    <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
+                </div>
+            <%}%>
+            <%if(session.getAttribute("status") == (Integer)0) {%>
             <div class="author__nav">
-                <a onclick="showAddBlogDialog('','','','');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
-                <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
+                <a href="#" class="author__nav-link changeinfo"><i class="fas fa-user-slash"></i><span>You are blocked</span></a>
             </div>
             <%}%>
         </div>
