@@ -167,11 +167,12 @@
 <%--================== Begin dialog ================ --%>
 <div class="list_dialog">
     <dialog style="border: 2px solid gray; border-radius: 2px;" id="add_blog-dialog">
-        <form action="">
+        <form action="/author?action=postBlog" method="post">
             <Strong>Blog infomations</Strong>
             <hr>
             <img id="add_blog_image" width="400px" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
                  alt="Blog image">
+            <input type="text" style="display: none" name="blogID">
             <table>
                 <tr>
                     <td><label for="image_blog_input">Blog image</label></td>
@@ -207,13 +208,12 @@
         let blogDialog = document.getElementById('add_blog-dialog')
         let postButton = document.getElementById('postNewBlogButton')
         let editButton = document.getElementById('editBlogButton')
-        let image = document.getElementById('image_blog_input')
-        image.value = 'http://localhost'
+        let inputID = document.getElementsByTagName('blogID')
+        inputID.value =  blogID.trim()
         if (blogID.trim() != "") {
             postButton.style.display = 'none';
         } else {
             editButton.style.display = 'none';
-
         }
         blogDialog.showModal()
     }

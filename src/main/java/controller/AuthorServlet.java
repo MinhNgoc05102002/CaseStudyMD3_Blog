@@ -12,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
@@ -32,7 +33,24 @@ public class AuthorServlet extends HttpServlet {
             case "authorPage":
                 goToAuthorPage(req, resp);
                 break;
+            case "postBlog":
+                postBlog(req, resp);
+                break;
+
         }
+    }
+
+    private void postBlog(HttpServletRequest req, HttpServletResponse resp) {
+        String imageSource = req.getParameter("imageSource");
+        String title = req.getParameter("title");
+        String content = req.getParameter("content");
+        String blogID = req.getParameter("blogID");
+        HttpSession session = req.getSession();
+        if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
+            blogService.save( new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource));
+            //    title,content,status,createAt,accountID,image
+        }
+        redirectPage(req, resp, "author.jsp");
     }
 
     @Override
