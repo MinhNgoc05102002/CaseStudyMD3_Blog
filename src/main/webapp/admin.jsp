@@ -140,8 +140,15 @@
                         <td>${blog.getKey().getContent().substring(0, blog.getKey().getContent().length() > 50 ? 50 : blog.getKey().getContent().length() )}...</td>
                         <td>${blog.getValue()}</td>
                         <td><img src="${blog.getKey().getImage()}" style="width: 100px;"></td>
-                        <td>${blog.getKey().getStatus()==1?"show":"hide"}</td>
-                        <td>x</td>
+                        <td style="text-align: center">
+                            <c:if test = "${blog.getKey().getStatus()==1}">
+                                <a class="eye-icon" href=""><i class="fas fa-eye"></i></a>
+                            </c:if>
+                            <c:if test = "${blog.getKey().getStatus()==0}">
+                                <a class="eye-icon" href=""><i class="fas fa-eye-slash"></i></a>
+                            </c:if>
+                        </td>
+                        <td style="text-align: center"><a class="delIcon" href=""><i class="fas fa-times"></i></a></td>
                     </tr>
                     </c:forEach>
 
@@ -165,8 +172,8 @@
                         <td>${category.getCategoryID()}</td>
                         <td>${category.getName()}</td>
                         <td>${category.getDescription()}</td>
-                        <td></td>
-                        <td>x</td>
+                        <td style="text-align: center"><a class="editIcon" href=""><i class="fas fa-edit"></i></a></td>
+                        <td style="text-align: center"><a class="delIcon" href=""><i class="fas fa-times"></i></a></td>
                     </tr>
                     </c:forEach>
                 </table>
@@ -185,7 +192,7 @@
                         <th>PhoneNumber</th>
                         <th>Description</th>
                         <th>Role</th>
-                        <th style="border-radius: 0 5px 0 0;">Status</th>
+                        <th style="border-radius: 0 5px 0 0;"> </th>
                     </tr>
                     <c:forEach items = '${requestScope["listAllAccounts"]}' var = "account">
                     <tr class="body_table">
@@ -196,8 +203,15 @@
                         <td>${account.getPassword()}</td>
                         <td>${account.getPhoneNumber()}</td>
                         <td>${account.getDescription().substring(0, account.getDescription().length() > 50 ? 50 : account.getDescription().length() )}...</td>
-                        <td>${account.getRole()==1?"admin":"user"}</td>
-                        <td>${account.getStatus()==1?"enable":"blocked"}</td>
+                        <td style="text-align: center">${account.getRole()==1?"admin":"user"}</td>
+                        <td style="text-align: center">
+                            <c:if test = "${account.getStatus()==1}">
+                                <a class="enableIcon" href=""><i class="fas fa-check-circle"></i></a>
+                            </c:if>
+                            <c:if test = "${account.getStatus()==0}">
+                                <a class="blockIcon" href=""><i class="fas fa-ban"></i></a>
+                            </c:if>
+                        </td>
                     </tr>
                     </c:forEach>
                 </table>

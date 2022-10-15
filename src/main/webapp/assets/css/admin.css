@@ -86,7 +86,9 @@
     background-color: rgb(81, 80, 80);
     color: white;
 }
-
+.heading_table th {
+    text-align: center;
+}
 .header {
     margin-bottom: 30px;
 }
@@ -126,4 +128,39 @@
 }
 #account_manager:checked ~ .category__manager{
     display: none;
+}
+
+.delIcon{
+    padding: 0px 6px;
+    color: black;
+    font-size: 1.1rem;
+    border: 1px solid black;
+    border-radius: 3px;
+}
+.editIcon {
+    font-size: 1.3rem;
+    color: black;
+    display: block;
+    margin-top: -3px;
+}
+.delIcon:hover {
+    background-color: rgb(231, 92, 92);
+    color: white;
+    border-color: rgb(231, 92, 92);
+}
+
+.editIcon:hover {
+    color: rgb(3, 159, 3);
+}
+
+.eye-icon {
+    font-size: 1.3rem;
+    color: black;
+}
+.enableIcon {
+    font-size: 1.3rem;
+}
+.blockIcon {
+    font-size: 1.3rem;
+    color: rgb(231, 92, 92);
 }
