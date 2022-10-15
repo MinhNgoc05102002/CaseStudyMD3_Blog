@@ -147,7 +147,7 @@ public class BlogServiceImplement implements IBlogService {
             PreparedStatement statement = connection.prepareStatement(sqlUpdate);
             statement.setString(1, blog.getTitle());
             statement.setString(2, blog.getContent());
-            statement.setString(3, String.valueOf(blog.getStatus()));
+            statement.setInt(3, blog.getStatus());
             statement.setString(4, blog.getImage());
 
             statement.execute();

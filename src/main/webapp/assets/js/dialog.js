@@ -24,3 +24,9 @@ function changeImageSource(source) {
         blogImage.src = source
     }
 }
+
+//deleteBlogDialog
+function showDeleteBlogDialog(blogID) {
+
+    document.getElementById("deleteBlogDialog").showModal()
+}

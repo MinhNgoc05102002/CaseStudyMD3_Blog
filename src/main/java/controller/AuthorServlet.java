@@ -44,7 +44,6 @@ public class AuthorServlet extends HttpServlet {
         String title = req.getParameter("title");
         String content = req.getParameter("content");
         String blogID = req.getParameter("blogID");
-        System.out.println(blogID + "id" + title);
         HttpSession session = req.getSession();
         if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
