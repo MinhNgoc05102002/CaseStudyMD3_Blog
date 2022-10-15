@@ -142,13 +142,13 @@
                         <td><img src="${blog.getKey().getImage()}" style="width: 100px;"></td>
                         <td style="text-align: center">
                             <c:if test = "${blog.getKey().getStatus()==1}">
-                                <a class="eye-icon" href=""><i class="fas fa-eye"></i></a>
+                                <a class="eye-icon" href="/admin?action=hideBlog&blogId=${blog.getKey().getBlogID()}"><i class="fas fa-eye"></i></a>
                             </c:if>
                             <c:if test = "${blog.getKey().getStatus()==0}">
-                                <a class="eye-icon" href=""><i class="fas fa-eye-slash"></i></a>
+                                <a class="eye-icon" href="/admin?action=hideBlog&blogId=${blog.getKey().getBlogID()}"><i class="fas fa-eye-slash"></i></a>
                             </c:if>
                         </td>
-                        <td style="text-align: center"><a class="delIcon" href=""><i class="fas fa-times"></i></a></td>
+                        <td style="text-align: center"><a class="delIcon" href="/admin?action=deleteBlog&blogId=${blog.getKey().getBlogID()}"><i class="fas fa-times"></i></a></td>
                     </tr>
                     </c:forEach>
 

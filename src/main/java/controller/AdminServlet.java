@@ -30,9 +30,35 @@ public class AdminServlet extends HttpServlet {
             case "blockAccount":
                 handleBlockAccount(request, response);
                 break;
+            case "hideBlog":
+                handleHideBlog(request, response);
+                break;
+            case "deleteBlog":
+                handleDelBlog(request, response);
+                break;
             default:
                 goToAdminPage(request, response);
         }
+    }
+
+    private void handleDelBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("blogId"));
+        this.categoryBlogService.deleteBlogById(id);
+        this.blogService.deleteById(id);
+        goToAdminPage(request, response);
+    }
+
+    private void handleHideBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        int id = Integer.parseInt(request.getParameter("blogId"));
+        Blog blog = blogService.findById(id);
+        if(this.blogService.findById(id).getStatus() == 1)
+            blog.setStatus(0);
+        else
+            blog.setStatus(1);
+
+        this.blogService.updateById(id, blog);
+
+        goToAdminPage(request, response);
     }
 
     private void handleBlockAccount(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
