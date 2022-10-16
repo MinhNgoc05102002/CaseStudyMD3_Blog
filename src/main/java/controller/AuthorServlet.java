@@ -127,6 +127,11 @@ public class AuthorServlet extends HttpServlet {
             listBlogAuthor.add(new CustomPair<Blog, Account>(listBlog.get(i), a));
         }
         req.setAttribute("blogAuthor", listBlogAuthor);
+
+        // Truyen category cua blog nay sang:
+        String category = "";
+
+
         if (account.getRole() == 0){
             redirectPage(req, resp, "author.jsp");
         }

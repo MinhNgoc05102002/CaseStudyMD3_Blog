@@ -42,7 +42,7 @@
         }
         .cate {
             width: 300px;
-            height: 200px;
+            height: 120px;
             border: 1px solid black;
             border-radius: 2px;
             padding: 5px;
@@ -152,7 +152,7 @@
                         </a>
                         <div class="card-block">
                             <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
-                            <h4 class="card-text">${aBlogAuthor.getKey().getContent()}</h4>
+                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent() )}...</h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
 									<span class="meta-footer-thumb">
