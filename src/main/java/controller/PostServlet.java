@@ -56,9 +56,10 @@ public class PostServlet extends HttpServlet {
         }
 
         List<CustomPair<Blog, Account>> relatedBlogAuthorList = new ArrayList<>();
-        for (int i = 0; i < blogList.size() && i < 3; i++) {
-            if (blogList.get(i).getStatus() == 0) {
-                i--;
+        int num = 3;
+        for (int i = 0; i < blogList.size() && i < num; i++) {
+            if (blogList.get(i).getStatus() == 0 || blogList.get(i).getBlogID() == blog.getBlogID()) {
+                num++;
                 continue;
             }
             Account a = accountService.findById(blogList.get(i).getAccountID());

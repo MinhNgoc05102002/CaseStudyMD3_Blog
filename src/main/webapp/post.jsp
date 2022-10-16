@@ -66,7 +66,7 @@
     <!-- Nav Bar -->
     <div class="navbar">
         <ul class="nav__list">
-            <li class="nav__item"><a href="" class="nav__item-link">Home</a></li>
+            <li class="nav__item"><a href="/?action=" class="nav__item-link">Home</a></li>
             <li class="nav__item"><a href="" class="nav__item-link">Stories</a></li>
             <li class="nav__item"><a href="" class="nav__item-link">Category</a></li>
             <li class="nav__item"><a href="" class="nav__item-link">Author</a></li>

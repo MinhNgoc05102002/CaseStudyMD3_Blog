@@ -124,7 +124,7 @@
                 <!-- begin post -->
                 <div class="authorpostbox">
                     <div class="card">
-                        <a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">
+                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
                             <img class="img-fluid img-thumb" src="${aBlogAuthor.getKey().getImage()}" alt="A blog image.">
                         </a>
                         <div class="card-block">
