@@ -156,7 +156,22 @@ public class BlogServiceImplement implements IBlogService {
             e.printStackTrace();
         }
     }
+    public int getMaxBlogId() {
+        String sqlFindMax = "SELECT MAX(blogID) as max FROM case3.blog;";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(sqlFindMax);
+            int max = 0;
+            while (result.next()) {
+                max = result.getInt("max");
+            }
 
+            return max;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 
     public List<Blog> findByAuthorId(int accountID) {
         String sqlFindAll = "SELECT * FROM case3.blog where accountID = " + accountID + ";";

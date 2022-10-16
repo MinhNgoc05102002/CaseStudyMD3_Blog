@@ -29,6 +29,29 @@
     <link rel="stylesheet" href="./assets/css/author.css">
     <%--    dialog css--%>
     <link rel="stylesheet" href="./assets/css/dialog.css">
+    <style type="text/css">
+        .catechoice {
+            display: none;
+
+        }
+        .labelCate {
+            background-color: #dedede;
+            border-radius: 3px;
+            margin: 2px;
+            padding: 5px;
+        }
+        .cate {
+            width: 300px;
+            height: 200px;
+            border: 1px solid black;
+            border-radius: 2px;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        input:checked + label {
+            background-color: #8fcafe;
+        }
+    </style>
 </head>
 <body>
 
@@ -194,8 +217,19 @@
                     <td><input name="title" id="title_blog_input" type="text"></td>
                 </tr>
                 <tr>
-                    <td><label for="content_blog_input">Content</label></td>
+                    <td style="vertical-align: center"><label for="content_blog_input">Content</label></td>
                     <td><textarea name="content" id="content_blog_input" cols="30" rows="10"></textarea></td>
+                </tr>
+                <tr>
+                    <td><p>Category</p></td>
+                    <td>
+                        <div class="cate">
+                            <c:forEach items = '${requestScope["listAllCategory"]}' var = "category">
+                                <input class="catechoice" type="checkbox" name="${category.getCategoryID()}" id="${category.getCategoryID()}">
+                                <label for="${category.getCategoryID()}" class="labelCate">${category.getName()}</label>
+                            </c:forEach>
+                        </div>
+                    </td>
                 </tr>
             </table>
             <div style="text-align: center;">

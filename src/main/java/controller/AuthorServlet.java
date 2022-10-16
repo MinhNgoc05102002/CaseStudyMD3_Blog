@@ -2,9 +2,9 @@ package controller;
 
 import dao.account.AccountServiceImplement;
 import dao.blog.BlogServiceImplement;
-import model.Account;
-import model.Blog;
-import model.CustomPair;
+import dao.category.CategoryServiceImplement;
+import dao.categoryBlog.CategoryBlogServiceImplement;
+import model.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -16,12 +16,15 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet (urlPatterns = "/author")
 
 public class AuthorServlet extends HttpServlet {
     private BlogServiceImplement blogService = new BlogServiceImplement();
+    private CategoryServiceImplement categoryService = new CategoryServiceImplement();
     private AccountServiceImplement accountService = new AccountServiceImplement();
+    private CategoryBlogServiceImplement categoryBlogService = new CategoryBlogServiceImplement();
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -54,10 +57,17 @@ public class AuthorServlet extends HttpServlet {
         String content = req.getParameter("content");
         String blogID = req.getParameter("blogID");
         HttpSession session = req.getSession();
+
         if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             //    title,content,status,createAt,accountID,image
             blogService.save(a);
+            for (int i = 0; i < categoryService.findAll().size(); i++) {
+                if(req.getParameter(String.valueOf(categoryService.findAll().get(i).getCategoryID())) != null) {
+                    CategoryBlog categoryBlog = new CategoryBlog(categoryService.findAll().get(i).getCategoryID(), blogService.getMaxBlogId());
+                    categoryBlogService.save(categoryBlog);
+                }
+            }
         } else {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             blogService.updateById(Integer.parseInt(blogID), a);
@@ -103,6 +113,12 @@ public class AuthorServlet extends HttpServlet {
                 throw new RuntimeException(e);
             }
         }
+
+        List<Category> listAllCategory = categoryService.findAll();
+        req.setAttribute("listAllCategory", listAllCategory);
+
+
+
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
         for (int i = 0; i < listBlog.size(); i++) {
