@@ -128,7 +128,7 @@
                             <img class="img-fluid img-thumb" src="${aBlogAuthor.getKey().getImage()}" alt="A blog image.">
                         </a>
                         <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">${aBlogAuthor.getKey().getTitle()}</a></h2>
+                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
                             <h4 class="card-text">${aBlogAuthor.getKey().getContent()}</h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
@@ -139,9 +139,13 @@
 									<span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().getFullname()}</a></span><br/>
 									<span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
 									</span>
-                                    <span class="post-read-more"><a href="post.jsp" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                                    <a style="display: inline; font-size: 1.1rem; margin-right: 10px;" class="header__user-link" onclick="showAddBlogDialog('${aBlogAuthor.getKey().getBlogID()}', '${aBlogAuthor.getKey().getImage()}', '${aBlogAuthor.getKey().getTitle()}', '${aBlogAuthor.getKey().getContent()}')"><span>Edit</span></a>
-                                    <a style="display: inline; font-size: 1.1rem; margin-right: 10px;" class="header__user-link" onclick="showDeleteBlogDialog(${aBlogAuthor.getKey().getBlogID()})"><span>Delete</span></a>
+                                    <span class="post-read-more">
+                                        <%if(session.getAttribute("username")!=null && session.getAttribute("status") == (Integer)1 &&
+                                                session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
+                                            <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showAddBlogDialog('${aBlogAuthor.getKey().getBlogID()}', '${aBlogAuthor.getKey().getImage()}', '${aBlogAuthor.getKey().getTitle()}', '${aBlogAuthor.getKey().getContent()}')"><i class="fas fa-edit"></i></a>
+                                            <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showDeleteBlogDialog(${aBlogAuthor.getKey().getBlogID()})"><i class="fas fa-trash-alt"></i></a>
+                                        <%}%>
+                                    </span>
                                 </div>
                             </div>
                         </div>

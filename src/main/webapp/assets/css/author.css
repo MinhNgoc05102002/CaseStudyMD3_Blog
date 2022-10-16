@@ -53,3 +53,8 @@
     background-color: #e4e6eb;
     color: black;
 }
+.readmore_icon {
+    display: block;
+    font-size: 1.2rem;
+    margin: 10px;
+}
