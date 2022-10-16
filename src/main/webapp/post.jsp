@@ -207,10 +207,10 @@
 <div class="container">
     <div class="footer">
         <p class="pull-left">
-            Copyright &copy; 2017 Your Website Name
+            Copyright &copy; 2022 Mediumish
         </p>
         <p class="pull-right">
-            Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
+            Mediumish theme by <a target="_blank" href="https://www.wowthemes.net">Ngoc.provip</a>
         </p>
         <div class="clearfix">
         </div>
