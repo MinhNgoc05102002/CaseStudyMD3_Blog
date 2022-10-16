@@ -38,7 +38,7 @@
                     <form action="/log-in?action=submitLogin" method="post" name="login">
                         <div class="form-group">
                             <label for="email">Email address</label>
-                            <input type="email" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <input type="text" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
                         </div>
                         <div class="form-group">
                             <label for="password">Password</label>

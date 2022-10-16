@@ -87,8 +87,8 @@ public class AdminServlet extends HttpServlet {
         List<CustomPair<Blog, String>> listBlogCategory = new ArrayList<>();
         for(int i=0; i<listAllBlog.size(); i++){
             List<Category> listCategory = categoryBlogService.findCategoryByBlogId(listAllBlog.get(i).getBlogID());
-            String categoryString="nothing";
-            if(listCategory != null){
+            String categoryString = "nothing";
+            if(listCategory.size() > 0){
                 categoryString = listCategory.get(0).getName();
             }
             for(int j=1; j<listCategory.size(); j++) {

@@ -32,8 +32,8 @@ public class BlogServiceImplement implements IBlogService {
     }
 
     public List<Blog> findFeatureBlog() {
-        String sqlFindAll = "SELECT blog.* FROM case3.blog JOIN case3.category_blog ON blog.blogId = category_blog.blogId " +
-                            "WHERE category_blog.categoryId = 8 LIMIT 4";
+        String sqlFindAll = "SELECT blog.* FROM case3.blog " +
+                            "ORDER BY CreateAt DESC LIMIT 4";
 
         try {
             Statement statement = connection.createStatement();

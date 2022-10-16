@@ -27,7 +27,7 @@ $(function() {
             }
         },
         messages: {
-            email: "Please enter a valid email address",
+            email: "Please enter password",
 
             password: {
                 required: "Please enter password",
