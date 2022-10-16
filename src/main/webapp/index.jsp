@@ -90,14 +90,14 @@
                     <div class="card">
                         <div class="row">
                             <div class="col-md-5 wrapthumbnail">
-                                <a href="post.jsp">
+                                <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
                                     <div class="thumbnail" style="background-image:url(${aBlogAuthor.getKey().getImage()});">
                                     </div>
                                 </a>
                             </div>
                             <div class="col-md-7">
                                 <div class="card-block">
-                                    <h2 class="card-title"><a href="post.jsp">${aBlogAuthor.getKey().title}</a></h2>
+                                    <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().title}</a></h2>
                                     <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length()) }...</h4>
                                     <div class="metafooter">
                                         <div class="wrapfooter">
@@ -135,11 +135,11 @@
                 <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
                     <!-- begin post -->
                     <div class="card">
-                        <a href="post.jsp">
+                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
                             <img class="img-fluid" src="${aBlogAuthor.getKey().getImage()}" alt="Post Image">
                         </a>
                         <div class="card-block">
-                            <h2 class="card-title"><a href="post.jsp">${aBlogAuthor.getKey().getTitle()}</a></h2>
+                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
                             <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 120 ? 120 : aBlogAuthor.getKey().getContent().length()) }...</h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
