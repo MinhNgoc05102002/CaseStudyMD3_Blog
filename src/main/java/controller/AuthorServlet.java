@@ -126,7 +126,16 @@ public class AuthorServlet extends HttpServlet {
             listBlogAuthor.add(new CustomPair<Blog, Account>(listBlog.get(i), a));
         }
         req.setAttribute("blogAuthor", listBlogAuthor);
-        redirectPage(req, resp, "author.jsp");
+        if (account.getRole() == 0){
+            redirectPage(req, resp, "author.jsp");
+        }
+        else {
+            try {
+                resp.sendRedirect("/admin");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
     private void redirectPage(HttpServletRequest request, HttpServletResponse response, String url){
