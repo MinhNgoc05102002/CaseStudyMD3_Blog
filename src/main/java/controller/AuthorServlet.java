@@ -58,10 +58,11 @@ public class AuthorServlet extends HttpServlet {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             //    title,content,status,createAt,accountID,image
             blogService.save(a);
-        } else {
-            Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
-            blogService.updateById(Integer.parseInt(blogID), a);
-        }
+        } else
+            if (session.getAttribute("accountID") != null) {
+                Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
+                blogService.updateById(Integer.parseInt(blogID), a);
+            }
         goToAuthorPage(req, resp);
     }
 

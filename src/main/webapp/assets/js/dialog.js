@@ -8,11 +8,13 @@ function showAddBlogDialog(blogID, imageSource, title, content) {
     if (inputID.value === "") {
         editButton.style.display = 'none';
     } else {
-        document.getElementById('image_blog_input').value = imageSource
-        document.getElementById('title_blog_input').value = title
-        document.getElementById('content_blog_input').value = content
+        document.getElementById('add_blog_image').src = imageSource
         postButton.style.display = 'none';
     }
+
+    document.getElementById('image_blog_input').value = imageSource
+    document.getElementById('title_blog_input').value = title
+    document.getElementById('content_blog_input').value = content
     blogDialog.showModal()
 }
 function changeImageSource(source) {

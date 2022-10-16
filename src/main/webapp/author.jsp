@@ -221,7 +221,46 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="assets/js/dialog.js">
+<script>
+    function showAddBlogDialog(blogID, imageSource, title, content) {
+        let blogDialog = document.getElementById('add_blog-dialog')
+        let postButton = document.getElementById('postNewBlogButton')
+        let editButton = document.getElementById('editBlogButton')
+        let inputID = document.getElementById('blogID')
+        inputID.value =  blogID.trim()
+        console.log(inputID.value + "id")
+        if (inputID.value === "") {
+            editButton.style.display = 'none';
+            postButton.style.display = 'inline-block';
+        } else {
+            document.getElementById('add_blog_image').src = imageSource
+            postButton.style.display = 'none';
+            editButton.style.display = 'inline-block';
+        }
+
+        document.getElementById('image_blog_input').value = imageSource
+        document.getElementById('title_blog_input').value = title
+        document.getElementById('content_blog_input').value = content
+        blogDialog.showModal()
+    }
+    function changeImageSource(source) {
+        let blogImage = document.getElementById('add_blog_image')
+        if (source=="") {
+            blogImage.src = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+        }
+        else {
+            blogImage.src = source
+        }
+    }
+
+    //deleteBlogDialog
+    function showDeleteBlogDialog(blogID) {
+        document.getElementById('deleteBlogForm').action = "author?action=deleteBlog&id=" + blogID
+        document.getElementById("deleteBlogDialog").showModal()
+    }
+    function closeDeleteBlogDialog() {
+        document.getElementById("deleteBlogDialog").close()
+    }
 </script>
 </body>
 </html>
