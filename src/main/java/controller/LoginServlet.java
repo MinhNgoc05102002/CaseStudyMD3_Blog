@@ -99,6 +99,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("password", account.getPassword());
             session.setAttribute("phoneNumber", account.getPhoneNumber());
             session.setAttribute("status", account.getStatus());
+            session.setMaxInactiveInterval(4000);
         }
     }
 

@@ -97,7 +97,11 @@ public class AuthorServlet extends HttpServlet {
             req.setAttribute("currentUser", account);
         }
         if (account==null) {
-            redirectPage(req, resp, "/");
+            try {
+                resp.sendRedirect("/");
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         }
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
