@@ -47,6 +47,7 @@ public class AuthorServlet extends HttpServlet {
     private void deleteBlog(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
 //        System.out.println(id);
+        this.categoryBlogService.deleteBlogById(id);
         blogService.deleteById(id);
         goToAuthorPage(req, resp);
     }
