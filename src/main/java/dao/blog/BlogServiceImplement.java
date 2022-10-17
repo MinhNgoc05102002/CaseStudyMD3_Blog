@@ -14,7 +14,6 @@ public class BlogServiceImplement implements IBlogService {
     @Override
     public List<Blog> findAll() {
         String sqlFindAll = "SELECT * FROM case3.blog";
-
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindAll);
@@ -34,7 +33,6 @@ public class BlogServiceImplement implements IBlogService {
     public List<Blog> findFeatureBlog() {
         String sqlFindAll = "SELECT blog.* FROM case3.blog " +
                             "ORDER BY CreateAt DESC LIMIT 4";
-
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlFindAll);
@@ -80,7 +78,6 @@ public class BlogServiceImplement implements IBlogService {
         statement.setString(1, blog.getTitle());
         statement.setString(2, blog.getContent());
         statement.setString(3, String.valueOf(blog.getStatus()));
-//        statement.setString(4, String.valueOf(blog.getCreateAt()));
         statement.setString(4, String.valueOf(blog.getAccountID()));
         statement.setString(5, blog.getImage());
 
@@ -104,6 +101,25 @@ public class BlogServiceImplement implements IBlogService {
             throw new RuntimeException(e);
         }
         return blog;
+    }
+
+    @Override
+    public List<Blog> findLikeTitle(String titleCut) {
+        String sqlFindLike = "SELECT * FROM case3.blog where title LIKE '%" + titleCut +"%'";
+        try {
+            Statement statement = connection.createStatement();
+            ResultSet resultSet = statement.executeQuery(sqlFindLike);
+
+            ArrayList<Blog> result = new ArrayList<>();
+            while (resultSet.next()) {
+                Blog blog = getBlogByResultSet(resultSet);
+                result.add(blog);
+            }
+            return result;
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     @Override
@@ -198,7 +214,6 @@ public class BlogServiceImplement implements IBlogService {
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(sqlfindAuthorNameById);
-
             String result = resultSet.getString("username");;
             return result;
         }catch (Exception e) {

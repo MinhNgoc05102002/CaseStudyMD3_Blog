@@ -10,6 +10,7 @@ public interface IBlogService extends IService<Blog> {
     public List findAll();
     void save(Blog blog);
     Blog findById(int id);
+    List findLikeTitle(String titleCut);
     List<Blog> findByName(String title);
     void deleteById(int id);
     void updateById(int id, Blog blog);

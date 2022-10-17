@@ -34,8 +34,9 @@
         </div>
         <div class="header__search col-md-4 col-lg-6">
             <form class="form-inline">
-                <input class="form-control" type="text" placeholder="Search">
-                <span><i class="fas fa-search"></i></span>
+                <input id="searchInput" class="form-control" type="text" placeholder="Search"
+                       onchange="document.getElementById('searchA').href = '/?action=searchBlog&title=' + this.value">
+                <span><a href="/" id="searchA"><i class="fas fa-search"></i></a></span>
             </form>
         </div>
 <%--        <div class="header__user col-md-4 col-lg-3">--%>
@@ -77,93 +78,148 @@
 
 
 <div class="container">
-    <!-- Begin Featured
-    ================================================== -->
-    <section class="featured-posts">
-        <div class="section-title" style="margin-top: 30px;">
-            <h2><span>Featured</span></h2>
-        </div>
-        <div class="card-columns listfeaturedtag">
-            <c:forEach items = "${FeatureBlogAuthor}" var = "aBlogAuthor">
-                <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
-                <!-- begin post -->
-                    <div class="card">
-                        <div class="row">
-                            <div class="col-md-5 wrapthumbnail">
-                                <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
-                                    <div class="thumbnail" style="background-image:url(${aBlogAuthor.getKey().getImage()});">
+    <%-- Search blog --%>
+    <c:choose>
+        <c:when test="${searchBlog!=null}">
+            <!-- Begin Featured
+            ================================================== -->
+            <section class="featured-posts">
+                <div class="section-title" style="margin-top: 30px;">
+                    <h2><span>Search result: </span></h2>
+                </div>
+                <div class="card-columns listfeaturedtag">
+                    <c:forEach items = "${blogAuthor}" var = "aBlogAuthor">
+                        <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
+                            <!-- begin post -->
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-md-5 wrapthumbnail">
+                                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
+                                            <div class="thumbnail" style="background-image:url(${aBlogAuthor.getKey().getImage()});">
+                                            </div>
+                                        </a>
                                     </div>
-                                </a>
-                            </div>
-                            <div class="col-md-7">
-                                <div class="card-block">
-                                    <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().title}</a></h2>
-                                    <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length()) }...</h4>
-                                    <div class="metafooter">
-                                        <div class="wrapfooter">
+                                    <div class="col-md-7">
+                                        <div class="card-block">
+                                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().title}</a></h2>
+                                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length()) }...</h4>
+                                            <div class="metafooter">
+                                                <div class="wrapfooter">
                                     <span class="meta-footer-thumb">
                                     <a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
                                     </span>
-                                            <span class="author-meta">
+                                                    <span class="author-meta">
                                     <span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().fullname}</a></span><br/>
                                     <span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
                                     </span>
+                                                    <span class="post-read-more"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end post -->
+                        </c:if>
+                    </c:forEach>
+
+                </div>
+            </section>
+            <!-- End Featured
+        </c:when>
+        <c:when test="${searchBlog==null}">
+            <!-- Begin Featured
+            ================================================== -->
+            <section class="featured-posts">
+                <div class="section-title" style="margin-top: 30px;">
+                    <h2><span>Featured</span></h2>
+                </div>
+                <div class="card-columns listfeaturedtag">
+                    <c:forEach items = "${FeatureBlogAuthor}" var = "aBlogAuthor">
+                        <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
+                            <!-- begin post -->
+                            <div class="card">
+                                <div class="row">
+                                    <div class="col-md-5 wrapthumbnail">
+                                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
+                                            <div class="thumbnail" style="background-image:url(${aBlogAuthor.getKey().getImage()});">
+                                            </div>
+                                        </a>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <div class="card-block">
+                                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().title}</a></h2>
+                                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length()) }...</h4>
+                                            <div class="metafooter">
+                                                <div class="wrapfooter">
+                                    <span class="meta-footer-thumb">
+                                    <a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
+                                    </span>
+                                                    <span class="author-meta">
+                                    <span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().fullname}</a></span><br/>
+                                    <span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
+                                    </span>
+                                                    <span class="post-read-more"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end post -->
+                        </c:if>
+                    </c:forEach>
+
+                </div>
+            </section>
+            <!-- End Featured
+            ================================================== -->
+
+            <!-- Begin List Posts
+            ================================================== -->
+            <section class="recent-posts">
+                <div class="section-title">
+                    <h2><span>All Stories</span></h2>
+                </div>
+                <div class="card-columns listrecent">
+                    <c:forEach items = '${requestScope["blogAuthor"]}' var = "aBlogAuthor">
+                        <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
+                            <!-- begin post -->
+                            <div class="card">
+                                <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
+                                    <img class="img-fluid" src="${aBlogAuthor.getKey().getImage()}" alt="Post Image">
+                                </a>
+                                <div class="card-block">
+                                    <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
+                                    <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 120 ? 120 : aBlogAuthor.getKey().getContent().length()) }...</h4>
+                                    <div class="metafooter">
+                                        <div class="wrapfooter">
+                            <span class="meta-footer-thumb">
+                            <a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
+                            </span>
+                                            <span class="author-meta">
+                            <span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().fullname}</a></span><br/>
+                            <span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
+                            </span>
                                             <span class="post-read-more"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                <!-- end post -->
-                </c:if>
-            </c:forEach>
+                            <!-- end post -->
+                        </c:if>
 
-        </div>
-    </section>
-    <!-- End Featured
-    ================================================== -->
+                    </c:forEach>
 
-    <!-- Begin List Posts
-        ================================================== -->
-    <section class="recent-posts">
-        <div class="section-title">
-            <h2><span>All Stories</span></h2>
-        </div>
-        <div class="card-columns listrecent">
-            <c:forEach items = '${requestScope["blogAuthor"]}' var = "aBlogAuthor">
-                <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
-                    <!-- begin post -->
-                    <div class="card">
-                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
-                            <img class="img-fluid" src="${aBlogAuthor.getKey().getImage()}" alt="Post Image">
-                        </a>
-                        <div class="card-block">
-                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
-                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 120 ? 120 : aBlogAuthor.getKey().getContent().length()) }...</h4>
-                            <div class="metafooter">
-                                <div class="wrapfooter">
-                            <span class="meta-footer-thumb">
-                            <a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-                            </span>
-                                    <span class="author-meta">
-                            <span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().fullname}</a></span><br/>
-                            <span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
-                            </span>
-                                    <span class="post-read-more"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}" title="Read Story"><svg class="svgIcon-use" width="25" height="25" viewbox="0 0 25 25"><path d="M19 6c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v14.66h.012c.01.103.045.204.12.285a.5.5 0 0 0 .706.03L12.5 16.85l5.662 4.126a.508.508 0 0 0 .708-.03.5.5 0 0 0 .118-.285H19V6zm-6.838 9.97L7 19.636V6c0-.55.45-1 1-1h9c.55 0 1 .45 1 1v13.637l-5.162-3.668a.49.49 0 0 0-.676 0z" fill-rule="evenodd"></path></svg></a></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- end post -->
-                </c:if>
+                </div>
+            </section>
+            <!-- End List Posts
+            ================================================== -->
+        </c:when>
+    </c:choose>
 
-            </c:forEach>
+    <!-- End search block============================= -->
 
-        </div>
-    </section>
-    <!-- End List Posts
-    ================================================== -->
 
     <!-- Begin Footer
     ================================================== -->

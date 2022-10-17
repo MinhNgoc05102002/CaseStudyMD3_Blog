@@ -33,8 +33,29 @@ public class HomeServlet extends HttpServlet {
                 break;
             case "create_account":
                 break;
+            case "searchBlog":
+                searchBlog(request, response, request.getParameter("title"));
+                break;
             default:
                 returnHomePage(request,response);
+        }
+    }
+
+    private void searchBlog(HttpServletRequest request, HttpServletResponse response, String title) {
+        List<Blog> blogList = blogService.findLikeTitle(title);
+        List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<>();
+        for (int i = 0; i < blogList.size(); i++) {
+            Account account = accountService.findById(blogList.get(i).getAccountID());
+            listBlogAuthor.add(new CustomPair<Blog, Account>(blogList.get(i), account));
+        }
+        request.setAttribute("searchBlog", "true");
+        request.setAttribute("blogAuthor", listBlogAuthor);
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
+        try {
+            dispatcher.forward(request, response);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
         }
     }
 
