@@ -27,7 +27,7 @@
 <div class="header container">
     <div class="header__top row">
         <div class="header__social col-md-4 col-lg-3">
-            <a href="" class="header__social-link"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.facebook.com/SyLV224/" class="header__social-link"><i class="fab fa-facebook"></i></a>
             <a href="" class="header__social-link"><i class="fab fa-instagram"></i></a>
             <a href="" class="header__social-link"><i class="fab fa-linkedin"></i></a>
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
@@ -65,10 +65,10 @@
     <!-- Nav Bar -->
     <div class="navbar">
         <ul class="nav__list">
-            <li class="nav__item"><a href="" class="nav__item-link">Home</a></li>
-            <li class="nav__item"><a href="" class="nav__item-link">Stories</a></li>
-            <li class="nav__item"><a href="" class="nav__item-link">Category</a></li>
-            <li class="nav__item"><a href="" class="nav__item-link">Author</a></li>
+            <li class="nav__item"><a href="/" class="nav__item-link">Home</a></li>
+            <li class="nav__item"><a href="/" class="nav__item-link">Stories</a></li>
+            <li class="nav__item"><a href="/" class="nav__item-link">Category</a></li>
+            <li class="nav__item"><a href="/" class="nav__item-link">Author</a></li>
         </ul>
     </div>
     <!-- End nav bar -->
@@ -88,7 +88,7 @@
                     <h2><span>Search result: </span></h2>
                 </div>
                 <div class="card-columns listfeaturedtag">
-                    <c:forEach items = "${blogAuthor}" var = "aBlogAuthor">
+                    <c:forEach items = "${searchBlogAuthor}" var = "aBlogAuthor">
                         <c:if test = "${aBlogAuthor.getKey().getStatus() == 1}">
                             <!-- begin post -->
                             <div class="card">

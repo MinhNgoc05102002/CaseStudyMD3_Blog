@@ -66,10 +66,10 @@
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
         </div>
         <div class="header__search col-md-4 col-lg-6">
-            <form class="form-inline">
-                <input class="form-control" type="text" placeholder="Search">
-                <span><i class="fas fa-search"></i></span>
-            </form>
+<%--            <form class="form-inline">--%>
+<%--                <input class="form-control" type="text" placeholder="Search">--%>
+<%--                <span><i class="fas fa-search"></i></span>--%>
+<%--            </form>--%>
         </div>
 <%--        <div class="header__user col-md-4 col-lg-3">--%>
 <%--            <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>--%>
@@ -152,7 +152,7 @@
                         </a>
                         <div class="card-block">
                             <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
-                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent() )}...</h4>
+                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length() )}...</h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
 									<span class="meta-footer-thumb">

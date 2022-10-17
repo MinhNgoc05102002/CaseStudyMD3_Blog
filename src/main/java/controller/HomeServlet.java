@@ -49,7 +49,7 @@ public class HomeServlet extends HttpServlet {
             listBlogAuthor.add(new CustomPair<Blog, Account>(blogList.get(i), account));
         }
         request.setAttribute("searchBlog", "true");
-        request.setAttribute("blogAuthor", listBlogAuthor);
+        request.setAttribute("searchBlogAuthor", listBlogAuthor);
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");
         try {
