@@ -41,15 +41,11 @@
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
         </div>
         <div class="header__search col-md-4 col-lg-6">
-            <form class="form-inline">
-                <input class="form-control" type="text" placeholder="Search">
-                <span><i class="fas fa-search"></i></span>
-            </form>
+<%--            <form class="form-inline">--%>
+<%--                <input class="form-control" type="text" placeholder="Search">--%>
+<%--                <span><i class="fas fa-search"></i></span>--%>
+<%--            </form>--%>
         </div>
-<%--        <div class="header__user col-md-4 col-lg-3">--%>
-<%--            <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>--%>
-<%--            <a href="/login/register.jsp" class="header__user-link"><span>Register</span><i class="fas fa-user-plus"></i></a>--%>
-<%--        </div>--%>
         <div class="header__user col-md-4 col-lg-3">
             <%
                 if(session.getAttribute("fullName") == null){
