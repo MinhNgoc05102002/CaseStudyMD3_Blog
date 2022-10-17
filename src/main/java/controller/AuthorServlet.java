@@ -16,7 +16,6 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @WebServlet (urlPatterns = "/author")
 
@@ -25,6 +24,20 @@ public class AuthorServlet extends HttpServlet {
     private CategoryServiceImplement categoryService = new CategoryServiceImplement();
     private AccountServiceImplement accountService = new AccountServiceImplement();
     private CategoryBlogServiceImplement categoryBlogService = new CategoryBlogServiceImplement();
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        String action = req.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            case "authorPage":
+                goToAuthorPage(req, resp);
+                break;
+        }
+    }
+
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String action = req.getParameter("action");
@@ -46,7 +59,6 @@ public class AuthorServlet extends HttpServlet {
 
     private void deleteBlog(HttpServletRequest req, HttpServletResponse resp) {
         int id = Integer.parseInt(req.getParameter("id"));
-//        System.out.println(id);
         this.categoryBlogService.deleteBlogById(id);
         blogService.deleteById(id);
         goToAuthorPage(req, resp);
@@ -74,19 +86,6 @@ public class AuthorServlet extends HttpServlet {
             blogService.updateById(Integer.parseInt(blogID), a);
         }
         goToAuthorPage(req, resp);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        String action = req.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            case "authorPage":
-                goToAuthorPage(req, resp);
-                break;
-        }
     }
 
     private void goToAuthorPage(HttpServletRequest req, HttpServletResponse resp) {
@@ -118,8 +117,6 @@ public class AuthorServlet extends HttpServlet {
         List<Category> listAllCategory = categoryService.findAll();
         req.setAttribute("listAllCategory", listAllCategory);
 
-
-
         List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
         for (int i = 0; i < listBlog.size(); i++) {
@@ -130,7 +127,6 @@ public class AuthorServlet extends HttpServlet {
 
         // Truyen category cua blog nay sang:
         String category = "";
-
 
         if (account.getRole() == 0){
             redirectPage(req, resp, "author.jsp");

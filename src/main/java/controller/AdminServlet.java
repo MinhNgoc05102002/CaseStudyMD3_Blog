@@ -41,6 +41,18 @@ public class AdminServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            default:
+                goToAdminPage(request, response);
+        }
+    }
+
     private void handleDelBlog(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("blogId"));
         this.categoryBlogService.deleteBlogById(id);
@@ -78,9 +90,6 @@ public class AdminServlet extends HttpServlet {
         List<Blog> listAllBlog = blogService.findAll();
         List<Account> listAllAccounts = accountService.findAll();
         List<Category> listAllCategory = categoryService.findAll();
-//        List<CategoryBlog> categoryBlog = categoryBlogService.findAll();
-
-//        request.setAttribute("listAllBlog", listAllBlog);
         request.setAttribute("listAllAccounts", listAllAccounts);
         request.setAttribute("listAllCategory", listAllCategory);
 
@@ -100,17 +109,5 @@ public class AdminServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = request.getRequestDispatcher("admin.jsp");
         dispatcher.forward(request, response);
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            default:
-                goToAdminPage(request, response);
-        }
     }
 }

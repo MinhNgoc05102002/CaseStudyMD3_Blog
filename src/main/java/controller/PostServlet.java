@@ -21,8 +21,19 @@ public class PostServlet extends HttpServlet {
 
     private BlogServiceImplement blogService = new BlogServiceImplement();
     private AccountServiceImplement accountService = new AccountServiceImplement();
-    private CategoryServiceImplement categoryService = new CategoryServiceImplement();
     private CategoryBlogServiceImplement categoryBlogService = new CategoryBlogServiceImplement();
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+        switch (action) {
+            default:
+                goToPostPage(request, response);
+        }
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -71,17 +82,5 @@ public class PostServlet extends HttpServlet {
         RequestDispatcher dispatcher = request.getRequestDispatcher("post.jsp");
         dispatcher.forward(request, response);
 
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getParameter("action");
-        if (action == null) {
-            action = "";
-        }
-        switch (action) {
-            default:
-                goToPostPage(request, response);
-        }
     }
 }

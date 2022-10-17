@@ -60,7 +60,6 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-
     private void checkLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String email = request.getParameter("email");
         String password = request.getParameter("password");
