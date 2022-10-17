@@ -41,6 +41,23 @@ public class HomeServlet extends HttpServlet {
         }
     }
 
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String action = request.getParameter("action");
+        if (action == null) {
+            action = "";
+        }
+
+        switch (action) {
+            case "searchBlog":
+                System.out.println("hehehehe");
+                searchBlog(request, response, request.getParameter("title"));
+                break;
+            default:
+                returnHomePage(request,response);
+        }
+    }
+
     private void searchBlog(HttpServletRequest request, HttpServletResponse response, String title) {
         List<Blog> blogList = blogService.findLikeTitle(title);
         List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<>();

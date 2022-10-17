@@ -200,16 +200,14 @@
 
 <!-- Begin Footer
 ================================================== -->
-<div class="container">
-    <div class="footer">
-        <p class="pull-left">
-            Copyright &copy; 2022 Mediumish
-        </p>
-        <p class="pull-right">
-            Mediumish theme by <a target="_blank" href="https://www.wowthemes.net">Ngoc.provip</a>
-        </p>
-        <div class="clearfix">
-        </div>
+<div class="footer">
+    <p class="pull-left">
+        Copyright &copy; 2022 Blog SyNgoc
+    </p>
+    <p class="pull-right">
+        Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">SyNgoc.net</a>
+    </p>
+    <div class="clearfix">
     </div>
 </div>
 <!-- End Footer

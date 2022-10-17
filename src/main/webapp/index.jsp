@@ -33,8 +33,8 @@
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
         </div>
         <div class="header__search col-md-4 col-lg-6">
-            <form class="form-inline">
-                <input id="searchInput" class="form-control" type="text" placeholder="Search"
+            <form action="/?action=searchBlog" class="form-inline" method="post">
+                <input id="searchInput" name="title" class="form-control" type="text" placeholder="Search"
                        onchange="document.getElementById('searchA').href = '/?action=searchBlog&title=' + this.value">
                 <span><a href="/" id="searchA"><i class="fas fa-search"></i></a></span>
             </form>
@@ -85,7 +85,7 @@
             ================================================== -->
             <section class="featured-posts">
                 <div class="section-title" style="margin-top: 30px;">
-                    <h2><span>Search result: </span></h2>
+                    <h2><span>Search result: have ${searchBlogAuthor.size()} blog${searchBlogAuthor.size()>0?'s':""}</span></h2>
                 </div>
                 <div class="card-columns listfeaturedtag">
                     <c:forEach items = "${searchBlogAuthor}" var = "aBlogAuthor">
@@ -225,10 +225,10 @@
     ================================================== -->
     <div class="footer">
         <p class="pull-left">
-            Copyright &copy; 2017 Your Website Name
+            Copyright &copy; 2022 Blog SyNgoc
         </p>
         <p class="pull-right">
-            Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">WowThemes.net</a>
+            Mediumish Theme by <a target="_blank" href="https://www.wowthemes.net">SyNgoc.net</a>
         </p>
         <div class="clearfix">
         </div>
