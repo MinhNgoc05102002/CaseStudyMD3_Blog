@@ -34,7 +34,9 @@
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
         </div>
         <div class="header__search col-md-4 col-lg-6">
-            <div class="admin__title">Mediumish Manager</div>
+            <div class="admin__title">
+                <a style="color: black" href="/">Mediumish Manager</a>
+            </div>
             <!-- <form class="form-inline">
                 <input class="form-control" type="text" placeholder="Search">
                 <span><i class="fas fa-search"></i></span>
