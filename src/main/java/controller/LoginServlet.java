@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
                 redirectPage(request, response, "login/register.jsp");
                 break;
             default:
-                redirectPage(request, response,"");
+                redirectPage(request, response,"login/login.jsp");
         }
     }
 
@@ -56,7 +56,7 @@ public class LoginServlet extends HttpServlet {
                 createAnAccount(request,response);
                 break;
             default:
-                redirectPage(request, response,"");
+                redirectPage(request, response,"login/login.jsp");
         }
     }
 
@@ -97,6 +97,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("username", account.getUsername());
             session.setAttribute("password", account.getPassword());
             session.setAttribute("phoneNumber", account.getPhoneNumber());
+            session.setAttribute("role", account.getRole());
             session.setAttribute("status", account.getStatus());
             session.setMaxInactiveInterval(40000);
         }
