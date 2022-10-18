@@ -259,15 +259,17 @@
         let postButton = document.getElementById('postNewBlogButton')
         let editButton = document.getElementById('editBlogButton')
         let inputID = document.getElementById('blogID')
+        document.getElementById('image_blog_input').value = imageSource
+        document.getElementById('title_blog_input').value = title
+        document.getElementById('content_blog_input').value = content
+
+        changeImageSource(imageSource)
         inputID.value =  blogID.trim()
         // console.log(inputID.value + "id")
         if (inputID.value === "") {
             editButton.style.display = 'none';
+            postButton.style.display = 'inline-block';
         } else {
-            document.getElementById('image_blog_input').value = imageSource
-            document.getElementById('title_blog_input').value = title
-            document.getElementById('content_blog_input').value = content
-
             let categoryList = category.split(',');
             if(categoryList.length > 0) {
                 for(let i = 0; i < categoryList.length; i++) {
@@ -276,9 +278,9 @@
                 }
             }
 
-
             // document.getElementById('content_blog_input').value = content
             postButton.style.display = 'none';
+            editButton.style.display = 'inline-block';
         }
         blogDialog.showModal()
     }

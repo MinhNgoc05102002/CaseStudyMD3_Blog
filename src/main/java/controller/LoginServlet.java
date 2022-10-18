@@ -28,7 +28,7 @@ public class LoginServlet extends HttpServlet {
         HttpSession session = request.getSession();
         switch (action) {
             case "login":
-                session.removeAttribute("fullName");
+                session.invalidate();
                 redirectPage(request, response, "login/login.jsp");
                 break;
             case "register":
