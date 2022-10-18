@@ -70,12 +70,13 @@ public class LoginServlet extends HttpServlet {
     private void handleRepass(HttpServletRequest request, HttpServletResponse response) {
         String username = request.getParameter("username");
         String phoneNumber = request.getParameter("phoneNumber");
-        String newPassword = request.getParameter("newPassword");
+        String newPassword = request.getParameter("newpass");
         //check validate
+        if (accountServiceImplement.findByUsernameOrEmail(username).getPhoneNumber().equals(phoneNumber)) {
 
-        if (accountServiceImplement.findByUsernameOrEmail(username).getPhoneNumber() == phoneNumber) {
             Account account = accountServiceImplement.findByUsernameOrEmail(username);
             account.setPassword(newPassword);
+            System.out.println(account.getPassword());
             accountServiceImplement.updateById(accountServiceImplement.findByUsernameOrEmail(username).getAccountID(),account);
             redirectPage(request, response, "login/login.jsp");
         }
