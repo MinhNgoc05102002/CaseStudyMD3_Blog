@@ -31,6 +31,10 @@ public class LoginServlet extends HttpServlet {
                 session.removeAttribute("fullName");
                 redirectPage(request, response, "login/login.jsp");
                 break;
+            case "repass":
+                session.removeAttribute("fullName");
+                redirectPage(request, response, "login/repass.jsp");
+                break;
             case "register":
                 session.removeAttribute("fullName");
                 redirectPage(request, response, "login/register.jsp");
@@ -55,8 +59,28 @@ public class LoginServlet extends HttpServlet {
             case "registration":
                 createAnAccount(request,response);
                 break;
+            case "submitRepass":
+                handleRepass(request,response);
+                break;
             default:
                 redirectPage(request, response,"login/login.jsp");
+        }
+    }
+
+    private void handleRepass(HttpServletRequest request, HttpServletResponse response) {
+        String username = request.getParameter("username");
+        String phoneNumber = request.getParameter("phoneNumber");
+        String newPassword = request.getParameter("newPassword");
+        //check validate
+
+        if (accountServiceImplement.findByUsernameOrEmail(username).getPhoneNumber() == phoneNumber) {
+            Account account = accountServiceImplement.findByUsernameOrEmail(username);
+            account.setPassword(newPassword);
+            accountServiceImplement.updateById(accountServiceImplement.findByUsernameOrEmail(username).getAccountID(),account);
+            redirectPage(request, response, "login/login.jsp");
+        }
+        else {
+            redirectPage(request, response, "login/repass.jsp");
         }
     }
 

@@ -44,6 +44,48 @@ $(function() {
     });
 });
 
+$(function() {
+    $("form[name='repass']").validate({
+        rules: {
+
+            username: {
+                required: true,
+                // email: true
+            },
+            phoneNumber: {
+                required: true,
+
+            },
+            newpass: {
+                required: true,
+                validatePassword: true,
+                minlength: 6
+            },
+            retypepass: {
+                required: true,
+                equalTo: "#newpass",
+                minlength: 6
+            }
+        },
+        messages: {
+            username: "Please enter your username",
+            phoneNumber: "Please enter your phoneNumber",
+            newpass: {
+                required: "Please provide a new password",
+                minlength: "Your password must be at least 6 characters long"
+            },
+            retypepass: {
+                required: "Please provide a password again",
+                minlength: "Your password must be at least 6 characters long"
+            },
+        },
+
+        submitHandler: function(form) {
+            form.submit();
+        }
+    });
+});
+
 $.validator.addMethod("validatePassword", function (value, element) {
     return this.optional(element) || /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,16}$/i.test(value);
 }, "Please enter a password between 6 and 16 characters including uppercase, lowercase and at least some letters");
