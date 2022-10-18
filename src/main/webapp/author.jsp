@@ -121,7 +121,7 @@
                     session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
             <div class="author__nav">
                 <a onclick="showAddBlogDialog('','','','');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
-                <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
+                <a href="/log-in?action=repass" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
             </div>
             <%}%>
             <%if(session.getAttribute("status") == (Integer)0) {%>
