@@ -71,20 +71,21 @@ public class AuthorServlet extends HttpServlet {
         String content = req.getParameter("content");
         String blogID = req.getParameter("blogID");
         HttpSession session = req.getSession();
-        int newBlogID = Integer.parseInt(blogID);
+        int newBlogID;
 
         if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             //    title,content,status,createAt,accountID,image
             blogService.save(a);
-            for (int i = 0; i < categoryService.findAll().size(); i++) {
-                if(req.getParameter(String.valueOf(categoryService.findAll().get(i).getCategoryID())) != null) {
-                    CategoryBlog categoryBlog = new CategoryBlog(categoryService.findAll().get(i).getCategoryID(), blogService.getMaxBlogId());
-                    categoryBlogService.save(categoryBlog);
-                }
-            }
+//            for (int i = 0; i < categoryService.findAll().size(); i++) {
+//                if(req.getParameter(String.valueOf(categoryService.findAll().get(i).getCategoryID())) != null) {
+//                    CategoryBlog categoryBlog = new CategoryBlog(categoryService.findAll().get(i).getCategoryID(), blogService.getMaxBlogId());
+//                    categoryBlogService.save(categoryBlog);
+//                }
+//            }
             newBlogID = blogService.getMaxBlogId();
         } else {
+            newBlogID = Integer.parseInt(blogID);
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             blogService.updateById(Integer.parseInt(blogID), a);
         }
