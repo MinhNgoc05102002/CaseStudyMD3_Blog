@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Login</title>
+    <title>Repass</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -33,23 +33,28 @@
                                 <img style="width: 200px;"
                                      src="https://www.logoai.com/uploads/output/2021/12/19/07532bb8bd0171f0fa684ff1f4f7debf.jpg" alt="Mediumish">
                             </a>
-                            <h1>Login</h1>
+                            <h1>Reset password</h1>
                         </div>
                     </div>
-                    <form action="/log-in?action=submitLogin" method="post" name="login">
+                    <form action="/log-in?action=submitRepass" method="post" name="repass">
                         <div class="form-group">
-                            <label for="email">Email address</label>
-                            <input type="text" name="email"  class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                            <label for="username">Username or Email</label>
+                            <input type="text" name="username"  class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter username or email">
                         </div>
                         <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" name="password" id="password"  class="form-control" aria-describedby="emailHelp" placeholder="Enter Password">
+                            <label for="phoneNumber">PhoneNumber</label>
+                            <input type="text" name="phoneNumber"  class="form-control" id="phoneNumber" aria-describedby="emailHelp" placeholder="Enter phone number">
                         </div>
                         <div class="form-group">
-                            <p class="text-center">Forget password? <a href="/log-in?action=repass">Click here to re-pass</a></p>
+                            <label for="newpass">New password</label>
+                            <input type="password" name="newpass"  class="form-control" id="newpass" aria-describedby="emailHelp" placeholder="Enter new password">
+                        </div>
+                        <div class="form-group">
+                            <label for="retypepass">Password</label>
+                            <input type="password" name="retypepass" id="retypepass"  class="form-control" aria-describedby="emailHelp" placeholder="Retype new password">
                         </div>
                         <div class="col-md-12 text-center ">
-                            <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Login</button>
+                            <button type="submit" class=" btn btn-block mybtn btn-primary tx-tfm">Reset</button>
                         </div>
                         <div class="col-md-12 ">
                             <div class="login-or">
@@ -57,15 +62,15 @@
                                 <span class="span-or">or</span>
                             </div>
                         </div>
-<%--                        <div class="col-md-12 mb-3">--%>
-<%--                            <p class="text-center">--%>
-<%--                                <a href="&lt;%&ndash;javascript:void();&ndash;%&gt;" class="google btn mybtn"><i class="fa fa-google-plus">--%>
-<%--                                </i> Signup using Google--%>
-<%--                                </a>--%>
-<%--                            </p>--%>
-<%--                        </div>--%>
+                        <%--                        <div class="col-md-12 mb-3">--%>
+                        <%--                            <p class="text-center">--%>
+                        <%--                                <a href="&lt;%&ndash;javascript:void();&ndash;%&gt;" class="google btn mybtn"><i class="fa fa-google-plus">--%>
+                        <%--                                </i> Signup using Google--%>
+                        <%--                                </a>--%>
+                        <%--                            </p>--%>
+                        <%--                        </div>--%>
                         <div class="form-group">
-                            <p class="text-center">Don't have account? <a href="/log-in?action=register" id="signup">Sign up here</a></p>
+                            <p class="text-center"><a href="/log-in?action=login" id="signup">Back to login</a></p>
                         </div>
                     </form>
                 </div>

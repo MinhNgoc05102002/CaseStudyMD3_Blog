@@ -45,6 +45,9 @@
         input:checked + label {
             background-color: #8fcafe;
         }
+        .img_dialog {
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -196,14 +199,14 @@
 
 <%--================== Begin dialog ================ --%>
 <div class="list_dialog">
-    <dialog style="border: 2px solid gray; border-radius: 2px;" id="add_blog-dialog">
+    <dialog style="border: 1px solid gray; border-radius: 10px" id="add_blog-dialog">
         <form action="/author?action=postBlog" method="post">
             <Strong>Blog infomations</Strong>
             <hr>
-            <img id="add_blog_image" width="400px" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+            <img class="img_dialog" id="add_blog_image" width="400px" src="https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
                  alt="Blog image">
             <input id="blogID" type="text" style="display: none" name="blogID">
-            <table>
+            <table class="edit_table" style="border: 5px solid white">
                 <tr>
                     <td><label for="image_blog_input">Blog image</label></td>
                     <td><input name="imageSource" id="image_blog_input" type="text" onchange="changeImageSource(this.value);"></td>
@@ -236,7 +239,7 @@
             </div>
         </form>
     </dialog>
-    <dialog id="deleteBlogDialog">
+    <dialog style="border: 1px solid gray; border-radius: 10px" id="deleteBlogDialog">
         <form id="deleteBlogForm" method="post" action="author?">
             <p>Do you want to delete this blog?</p>
             <input type="submit" value="Yes">
@@ -268,8 +271,12 @@
         // console.log(inputID.value + "id")
         if (inputID.value === "") {
             editButton.style.display = 'none';
-            postButton.style.display = 'inline-block';
+            postButton.style.display = 'inline';
         } else {
+            document.getElementById('image_blog_input').value = imageSource
+            document.getElementById('title_blog_input').value = title
+            document.getElementById('content_blog_input').value = content
+
             let categoryList = category.split(',');
             if(categoryList.length > 0) {
                 for(let i = 0; i < categoryList.length; i++) {
@@ -278,9 +285,10 @@
                 }
             }
 
+
             // document.getElementById('content_blog_input').value = content
             postButton.style.display = 'none';
-            editButton.style.display = 'inline-block';
+            editButton.style.display = 'inline'
         }
         blogDialog.showModal()
     }
@@ -303,6 +311,11 @@
         document.getElementById("deleteBlogDialog").close()
     }
     function closeAddBlogDialog() {
+
+        document.getElementById('image_blog_input').value = ""
+        document.getElementById('title_blog_input').value = ""
+        document.getElementById('content_blog_input').value = ""
+        document.getElementById('blogID').value = ""
 
         let inputTag = document.getElementsByClassName('catechoice')
         for(let i = 0; i< inputTag.length; i++) {
