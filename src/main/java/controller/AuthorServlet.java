@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 @WebServlet (urlPatterns = "/author")
 
@@ -70,6 +71,7 @@ public class AuthorServlet extends HttpServlet {
         String content = req.getParameter("content");
         String blogID = req.getParameter("blogID");
         HttpSession session = req.getSession();
+        int newBlogID = Integer.parseInt(blogID);
 
         if (blogID.equals("") || blogService.findById(Integer.parseInt(blogID)) == null) {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
@@ -81,9 +83,17 @@ public class AuthorServlet extends HttpServlet {
                     categoryBlogService.save(categoryBlog);
                 }
             }
+            newBlogID = blogService.getMaxBlogId();
         } else {
             Blog a =  new Blog(title, content, 1, null, (Integer) session.getAttribute("accountID"), imageSource);
             blogService.updateById(Integer.parseInt(blogID), a);
+        }
+        categoryBlogService.deleteBlogById(newBlogID);
+        for (int i = 0; i < categoryService.findAll().size(); i++) {
+            if(req.getParameter(String.valueOf(categoryService.findAll().get(i).getCategoryID())) != null) {
+                CategoryBlog categoryBlog = new CategoryBlog(categoryService.findAll().get(i).getCategoryID(), newBlogID);
+                categoryBlogService.save(categoryBlog);
+            }
         }
         goToAuthorPage(req, resp);
     }
@@ -115,18 +125,30 @@ public class AuthorServlet extends HttpServlet {
         }
 
         List<Category> listAllCategory = categoryService.findAll();
+        for(Category c : listAllCategory) System.out.println(c.getCategoryID());
         req.setAttribute("listAllCategory", listAllCategory);
 
-        List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
-        List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
-        for (int i = 0; i < listBlog.size(); i++) {
-            Account a = accountService.findById(listBlog.get(i).getAccountID());
-            listBlogAuthor.add(new CustomPair<Blog, Account>(listBlog.get(i), a));
-        }
-        req.setAttribute("blogAuthor", listBlogAuthor);
 
-        // Truyen category cua blog nay sang:
-        String category = "";
+
+        List<Blog> listBlog = blogService.findByAuthorId(account.getAccountID());
+
+//        List<CustomPair<Blog, Account>> listBlogAuthor = new ArrayList<CustomPair<Blog, Account>>();
+        List<CustomPair<Blog, String>>  listBlogCategory = new ArrayList<CustomPair<Blog, String>>();
+        String categoryString = "";
+        for (int i = 0; i < listBlog.size(); i++) {
+            List<Category> categoryList = categoryBlogService.findCategoryByBlogId(listBlog.get(i).getBlogID());
+            categoryString = "";
+            if(categoryList.size() > 0) categoryString = String.valueOf(categoryList.get(0).getCategoryID());
+
+            for(int j=1; j<categoryList.size(); j++)
+                categoryString += "," + String.valueOf(categoryList.get(j).getCategoryID());
+            System.out.println(categoryString);
+            listBlogCategory.add(new CustomPair<Blog, String>(listBlog.get(i), categoryString));
+
+        }
+
+//        req.setAttribute("blogAuthor", listBlogAuthor);
+        req.setAttribute("listBlogCategory", listBlogCategory);
 
         if (account.getRole() == 0){
             redirectPage(req, resp, "author.jsp");

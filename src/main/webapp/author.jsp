@@ -60,15 +60,15 @@
             <a href="" class="header__social-link"><i class="fab fa-facebook-messenger"></i></a>
         </div>
         <div class="header__search col-md-4 col-lg-6">
-<%--            <form class="form-inline">--%>
-<%--                <input class="form-control" type="text" placeholder="Search">--%>
-<%--                <span><i class="fas fa-search"></i></span>--%>
-<%--            </form>--%>
+            <%--            <form class="form-inline">--%>
+            <%--                <input class="form-control" type="text" placeholder="Search">--%>
+            <%--                <span><i class="fas fa-search"></i></span>--%>
+            <%--            </form>--%>
         </div>
-<%--        <div class="header__user col-md-4 col-lg-3">--%>
-<%--            <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>--%>
-<%--            <a href="/login/register.jsp" class="header__user-link"><span>Register</span><i class="fas fa-user-plus"></i></a>--%>
-<%--        </div>--%>
+        <%--        <div class="header__user col-md-4 col-lg-3">--%>
+        <%--            <a href="/login/login.jsp" class="header__user-link"><span>Login</span><i class="fas fa-sign-in-alt"></i></a>--%>
+        <%--            <a href="/login/register.jsp" class="header__user-link"><span>Register</span><i class="fas fa-user-plus"></i></a>--%>
+        <%--        </div>--%>
         <div class="header__user col-md-4 col-lg-3">
             <%
                 if(session.getAttribute("username") == null){
@@ -115,11 +115,11 @@
                 200 blogs
             </div>
             <%if(session.getAttribute("username")!=null && session.getAttribute("status") == (Integer)1 &&
-                session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
-                <div class="author__nav">
-                    <a onclick="showAddBlogDialog('','','','');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
-                    <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
-                </div>
+                    session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
+            <div class="author__nav">
+                <a onclick="showAddBlogDialog('','','','');" class="author__nav-link addblog"><i class="fas fa-plus-circle"></i><span>Add new blog</span></a>
+                <a href="#" class="author__nav-link changeinfo"><i class="fas fa-pen"></i><span>Change infomation</span></a>
+            </div>
             <%}%>
             <%if(session.getAttribute("status") == (Integer)0) {%>
             <div class="author__nav">
@@ -137,32 +137,33 @@
 <div class="graybg authorpage">
     <div class="container">
         <div class="listrecent listrelated">
-            <c:forEach items = '${requestScope["blogAuthor"]}' var = "aBlogAuthor">
+            <c:forEach items = '${requestScope["listBlogCategory"]}' var = "aBlogCategory">
                 <!-- begin post -->
                 <div class="authorpostbox">
                     <div class="card">
-                        <a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">
-                            <img class="img-fluid img-thumb" src="${aBlogAuthor.getKey().getImage()}" alt="A blog image.">
+                        <a href="/post?blogID=${aBlogCategory.getKey().getBlogID()}&accountID=${currentUser.getAccountID()}">
+                            <img class="img-fluid img-thumb" src="${aBlogCategory.getKey().getImage()}" alt="A blog image.">
                         </a>
                         <div class="card-block">
-                            <h2 class="card-title"><a href="/post?blogID=${aBlogAuthor.getKey().getBlogID()}&accountID=${aBlogAuthor.getValue().getAccountID()}">${aBlogAuthor.getKey().getTitle()}</a></h2>
-                            <h4 class="card-text">${aBlogAuthor.getKey().getContent().substring(0, aBlogAuthor.getKey().getContent().length() > 100 ? 100 : aBlogAuthor.getKey().getContent().length() )}...</h4>
+                            <h2 class="card-title"><a href="/post?blogID=${aBlogCategory.getKey().getBlogID()}&accountID=${currentUser.getAccountID()}">${aBlogCategory.getKey().getTitle()}</a></h2>
+                            <h4 class="card-text">${aBlogCategory.getKey().getContent().substring(0, aBlogCategory.getKey().getContent().length() > 100 ? 100 : aBlogCategory.getKey().getContent().length() )}...</h4>
                             <div class="metafooter">
                                 <div class="wrapfooter">
-									<span class="meta-footer-thumb">
-									<a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
-									</span>
-                                    <span class="author-meta">
-									<span class="post-name"><a href="/author?action=authorPage&currentUser=${aBlogAuthor.getValue().username}">${aBlogAuthor.getValue().fullname}</a></span><br/>
-									<span class="post-date">${aBlogAuthor.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
-									</span>
-                                    <span class="post-read-more">
-                                        <%if(session.getAttribute("username")!=null && session.getAttribute("status") == (Integer)1 &&
-                                                session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
-                                            <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showAddBlogDialog('${aBlogAuthor.getKey().getBlogID()}', '${aBlogAuthor.getKey().getImage()}', '${aBlogAuthor.getKey().getTitle()}', '${aBlogAuthor.getKey().getContent()}')"><i class="fas fa-edit"></i></a>
-                                            <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showDeleteBlogDialog(${aBlogAuthor.getKey().getBlogID()})"><i class="fas fa-trash-alt"></i></a>
-                                        <%}%>
+                                    <span class="meta-footer-thumb">
+                                        <a href="/author?action=authorPage&currentUser=${currentUser.username}"><img class="author-thumb" src="https://www.gravatar.com/avatar/e56154546cf4be74e393c62d1ae9f9d4?s=250&amp;d=mm&amp;r=x" alt="Sal"></a>
                                     </span>
+                                        <span class="author-meta">
+                                        <span class="post-name"><a href="/author?action=authorPage&currentUser=${currentUser.username}">${currentUser.fullname}</a></span><br/>
+                                        <span class="post-date">${aBlogCategory.getKey().getCreateAt()}</span><span class="dot"></span><span class="post-read">6 min read</span>
+                                    </span>
+                                    <p style="display: none" id="${aBlogCategory.getValue()}">${aBlogCategory.getValue()}</p>
+                                    <span class="post-read-more">
+                               <%if(session.getAttribute("username")!=null && session.getAttribute("status") == (Integer)1 &&
+                                       session.getAttribute("username").equals(((Account) request.getAttribute("currentUser")).getUsername())) {%>
+                                   <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showAddBlogDialog('${aBlogCategory.getKey().getBlogID()}', '${aBlogCategory.getKey().getImage()}', '${aBlogCategory.getKey().getTitle()}', '${aBlogCategory.getKey().getContent()}', '${aBlogCategory.getValue()}')"><i class="fas fa-edit"></i></a>
+                                   <a style="display: inline-block; font-size: 1.2rem; margin: 5px;" class="readmore_icon" onclick="showDeleteBlogDialog(${aBlogCategory.getKey().getBlogID()})"><i class="fas fa-trash-alt"></i></a>
+                               <%}%>
+                           </span>
                                 </div>
                             </div>
                         </div>
@@ -170,6 +171,8 @@
                 </div>
                 <!-- end post -->
             </c:forEach>
+
+
         </div>
     </div>
 </div>
@@ -220,6 +223,7 @@
                             <c:forEach items = '${requestScope["listAllCategory"]}' var = "category">
                                 <input class="catechoice" type="checkbox" name="${category.getCategoryID()}" id="${category.getCategoryID()}">
                                 <label for="${category.getCategoryID()}" class="labelCate">${category.getName()}</label>
+
                             </c:forEach>
                         </div>
                     </td>
@@ -228,7 +232,7 @@
             <div style="text-align: center;">
                 <input id="editBlogButton" type="submit" value="Edit">
                 <input id="postNewBlogButton" type="submit" value="Post">
-                <input type="button" value="Cancel" onclick="document.getElementById('add_blog-dialog').close()">
+                <input type="button" value="Cancel" onclick="closeAddBlogDialog()">
             </div>
         </form>
     </dialog>
@@ -248,7 +252,63 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
 <script src="assets/js/bootstrap.min.js"></script>
 <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
-<script src="assets/js/dialog.js">
+<%--<script src="assets/js/dialog.js">--%>
+<script>
+    function showAddBlogDialog(blogID, imageSource, title, content, category) {
+        let blogDialog = document.getElementById('add_blog-dialog')
+        let postButton = document.getElementById('postNewBlogButton')
+        let editButton = document.getElementById('editBlogButton')
+        let inputID = document.getElementById('blogID')
+        inputID.value =  blogID.trim()
+        // console.log(inputID.value + "id")
+        if (inputID.value === "") {
+            editButton.style.display = 'none';
+        } else {
+            document.getElementById('image_blog_input').value = imageSource
+            document.getElementById('title_blog_input').value = title
+            document.getElementById('content_blog_input').value = content
+
+            let categoryList = category.split(',');
+            if(categoryList.length > 0) {
+                for(let i = 0; i < categoryList.length; i++) {
+                    console.log(categoryList[i])
+                    if(document.getElementById(categoryList[i]) != null) document.getElementById(categoryList[i]).checked = true;
+                }
+            }
+
+
+            // document.getElementById('content_blog_input').value = content
+            postButton.style.display = 'none';
+        }
+        blogDialog.showModal()
+    }
+    function changeImageSource(source) {
+        let blogImage = document.getElementById('add_blog_image')
+        if (source=="") {
+            blogImage.src = "https://media.sproutsocial.com/uploads/2017/02/10x-featured-social-media-image-size.png"
+        }
+        else {
+            blogImage.src = source
+        }
+    }
+
+    // deleteBlogDialog
+    function showDeleteBlogDialog(blogID) {
+        document.getElementById('deleteBlogForm').action = "author?action=deleteBlog&id=" + blogID
+        document.getElementById("deleteBlogDialog").showModal()
+    }
+    function closeDeleteBlogDialog() {
+        document.getElementById("deleteBlogDialog").close()
+    }
+    function closeAddBlogDialog() {
+
+        let inputTag = document.getElementsByClassName('catechoice')
+        for(let i = 0; i< inputTag.length; i++) {
+            inputTag[i].checked = false;
+        }
+        document.getElementById('add_blog-dialog').close()
+    }
+
 </script>
 </body>
 </html>

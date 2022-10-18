@@ -21,6 +21,7 @@ public class PostServlet extends HttpServlet {
 
     private BlogServiceImplement blogService = new BlogServiceImplement();
     private AccountServiceImplement accountService = new AccountServiceImplement();
+    private CategoryServiceImplement categoryService = new CategoryServiceImplement();
     private CategoryBlogServiceImplement categoryBlogService = new CategoryBlogServiceImplement();
 
     @Override

@@ -11,6 +11,15 @@ function showAddBlogDialog(blogID, imageSource, title, content) {
         document.getElementById('image_blog_input').value = imageSource
         document.getElementById('title_blog_input').value = title
         document.getElementById('content_blog_input').value = content
+
+        let categoryList = category.split(',');
+
+        for(let i = 0; i < categoryList.length; i++) {
+            console.log(categoryList[i])
+            // document.getElementById(categoryList[i]).checked = true;
+        }
+
+        // document.getElementById('content_blog_input').value = content
         postButton.style.display = 'none';
     }
     blogDialog.showModal()
